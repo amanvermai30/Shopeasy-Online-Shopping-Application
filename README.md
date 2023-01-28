@@ -4,7 +4,7 @@
 
 <h1 align="center">Shopeasy Website</h1>
 
-About CallBuddy - Hello world ! welcome to shopeasy.com we are delighted that we are solving real time problem of customer and local street vendor , vendor means provider or seller.
+About Shopeasy - Hello world ! welcome to shopeasy.com we are delighted that we are solving real time problem of customer and local street vendor , vendor means provider or seller.
 
 
 # Problem Statement:
