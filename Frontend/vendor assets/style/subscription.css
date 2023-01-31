@@ -47,12 +47,11 @@ body{
     width: 85%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 15px;
-    border: 2px solid red;
+    gap: 3em;
     margin: auto;
     margin-top: 10%;
 }
 .box-1{
-    height: 40vh;
-    border: 2px solid rgb(222, 211, 211);
+    height: 45vh;
+    border: 2px solid rgb(159, 149, 149);
 }
