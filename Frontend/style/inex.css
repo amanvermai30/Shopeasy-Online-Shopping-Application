@@ -45,6 +45,10 @@ body{
     font-weight: 700;
 }
 
+.navbar .menu-item ul li:hover{
+    cursor: pointer;
+}
+
 /* Image section */
 
 .img-wrapper{
