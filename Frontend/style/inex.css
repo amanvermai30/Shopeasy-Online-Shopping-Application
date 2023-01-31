@@ -24,12 +24,6 @@ body{
     padding: 0 50px;
 }
 
-.navbar .logo{
-    margin-right: 100px;
-    font-size: 14px;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
 
 .navbar .menu-item{
     margin-right: auto;
@@ -53,7 +47,7 @@ body{
 .img-wrapper{
     position: absolute;
     top: 0;
-    left: 660px;
+    left: 700px;
 }
 
 .img-wrapper .img{
@@ -61,11 +55,17 @@ body{
     background-position: 50%;
     background-size: cover;
     height: 100vh;
-    width: 570px;
+    width: 500px;
     z-index: 1;
     opacity: 0;
     animation: image-appear 0.0001s linear forwards;
     animation-delay: 2.4s;
+    display: block;
+    margin: auto;
+}
+
+.img-wrapper > img{
+    width: 500px;
 }
 
 @keyframes image-appear{
@@ -109,14 +109,18 @@ body{
     }
 }
 
+.logo > img{
+    width: 240px;
+}
+
 /* Text style */
 .text{
     position: absolute;
-    top: 35%;
-    left: 51.1%;
+    top: 46%;
+    left: 54.1%;
     transform: translate(-50%, -50%);
     white-space: nowrap;
-    width: 1000px;
+    width: 74%;
 }
 
 .text h1{
@@ -146,8 +150,38 @@ body{
     overflow: hidden;
     height: 40px;
     width: 100%;
+    /* padding-left: 0.6em; */
+    padding: 1em 0 0 0.6em;
 }
 
 .text p .text-bar{
     position: absolute;
+}
+
+/* button styling */
+
+.btn-container{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding: 2em 0;
+    margin-top: 1em;
+    overflow: hidden;
+    /* border: 2px solid red; */
+}
+
+.btn {
+    font-size: 1em;
+    border-radius: 5px;
+    padding: .8em 1em;
+    cursor: pointer;
+    border: none;
+    background-color: aquamarine;
+}
+
+
+.btn:hover {
+    background-color: rgb(112, 224, 187);
 }

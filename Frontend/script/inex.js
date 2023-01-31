@@ -16,35 +16,25 @@ TweenMax.from(".text p .text-bar", 1.5,  {
     delay:2,
     y:"100%",
 })
+// button
+TweenMax.from(".btn-container .btn", 1.5,  {
+    delay:2,
+    y:"190%",
+})
 
-
-// bg sliding
-
+// sliding functionality 
 let image = [
-    `https://i.pinimg.com/originals/97/78/d3/9778d3097e8ce5c393481dd7531a2af1.png`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258355.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258399.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258359.jpg`,
-    `https://i0.wp.com/rrslide.com/wp-content/uploads/edd/2021/04/Slide1-min-59.jpg`,
-    `https://epicentrk.ua/upload/medialibrary/1a2/chto-pokupali-ukraintsy-v-chernuyu-pyatnitsu-2018.jpg`,
-    `https://www.titanium.lv/wp-content/uploads/2021/08/pokupki.jpg`,
-    `https://todaynewsspot.com/wp-content/uploads/2020/01/pcquest.jpg`,
-    `https://smallbizclub.com/wp-content/uploads/2018/11/Potential-Risks-of-Online-Shopping.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258349.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258375.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258359.jpg`,
-    `https://media.slidesgo.com/storage/51700/conversions/A3RcpE0jol-OKVs75_-8ZAIWreHt-K3QoBZx8b_8YPv2LIQ4Yv6qUSV41-d50RlBYbyowzykQGK5pRJC0vdw9adncXZOLfwzHIkcCv217d9RjdFo3OjQ5GAJKhUHY7BtMIGwkeyy8v99kj_3KmuVrZn5vKwSfiTZBX7tJMKcczoSwn-4U1zaeV1CnIaoeCEhgiU9sA=s1600-thumb.jpg`,
-    `https://media.slidesgo.com/storage/51702/conversions/-jdUf0bm0u9s3tE8ceoBOL30QMwor8TFEMRHCaPjIrh-j8B7d5g7rKgnpEOHT1GovebsGiUb-5HN1-isYUkNIEu-0mKOf0IR1qVHfDJ7ecgADYmyva_C1VucDQUcteolM7QCi6lJ6WARlvT7h-efGIAhvoJSAk9brNJFrJA4X23I13Pg2H0RB8aqnMi24hv2fsqyMQ=s1600-thumb.jpg`,
-    `https://media.slidesgo.com/storage/51708/conversions/7w7gICTIuX4cZ_CkvbfWoUICBvigTSHLL6L5S-NJ-o0hP4q9MQvuVuxDGehwc9R313b7f4e0cdLvAE9V5chRTD-ThpcZ8mxba6DoGBpYJ76TG9SgyptSyBUNpldJS9EX6q2uOgwyfJA7JZ9Kxk0s5BTfT1W7p767zJyddsOYr9GWtDAArjvn-H5Ko9K1z1Y25g52xw=s1600-thumb.jpg`,
-    `https://media.slidesgo.com/storage/51701/conversions/O5vPF9-PkpvJhPI3S7_Hhoyxr8-Uos-Q2AVRnoASHf7hcBw3y5E7eDZRH0VVYtvqlVj-XDTyDsphOq5WW8TjraBzxgQHqQT8waTEJ3PXmwcG4zT2vhk_ynioZSm2Vtgbtc-2Pe-gpT4R9-Mn_bKTndTFqJclmGFi8YXypDF5jMZv0BnPAYBulkYbqAq-4PpzjOIUgw=s1600-thumb.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/259/shopping_slide_ppt_258371.jpg`,
-    `https://imgscf.slidemembers.com/docs/1/1/442/online_shopping_powerpoint_themes_441526.jpg`
+    `https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGZhc2hpb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60`,
+    `https://plus.unsplash.com/premium_photo-1661645955394-54e20f20ece6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZHJlc3MlMjBtYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60`
 ]
 
 let index = 0;
 
 let slidShow = () => {
-    let container = document.querySelector("#slide_show");
+
+    console.log("working")
+
+    let container = document.querySelector(".img-wrapper");
 
     id = setInterval(() => {
 
@@ -56,8 +46,8 @@ let slidShow = () => {
         avtar.src = image[index]
         container.append(avtar);
         index++;
-    }, 2000)
-
-
+    }, 4000)
 
 }
+
+slidShow();
