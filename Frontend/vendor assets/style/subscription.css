@@ -13,16 +13,19 @@ body{
     overflow: hidden;
 }
 
+/* navbar style */
 .navbar{
     width: 100%;
     height: 15vh;
     display: flex;
     justify-content:space-between;
     align-items: center;
+    
 }
 
-.logo > img{
+.logo > a > img{
     width: 240px;
+    cursor: pointer;
 }
 
 .navbar .sign-in ul li{
@@ -30,6 +33,29 @@ body{
     padding: 0 80px;
     font-size: 1.2em;
     font-weight: 600;
+}
+
+.navbar-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    /* border: 2px solid red; */
+}
+
+.btn {
+    font-size: 1em;
+    border-radius: 5px;
+    padding: .8em 1em;
+    cursor: pointer;
+    border: none;
+    background-color: aquamarine;
+    width: 70%;
+}
+
+
+.btn:hover {
+    background-color: rgb(112, 224, 187);
 }
 
 /* about subscription  */
@@ -58,7 +84,7 @@ body{
 }
 .box-1{
     height: 51vh;
-    border: 2px solid rgb(159, 149, 149);
+    border: 1px solid rgb(159, 149, 149);
 }
 .box-1 > h2 {
     text-align: center;
