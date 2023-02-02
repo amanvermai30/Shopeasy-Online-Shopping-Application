@@ -1,0 +1,29 @@
+#signup-form-wrap {
+    background-color: #fff;
+    width: 35%;
+    height: 70vh;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px 0 1em 0;
+    border-radius: 4px;
+    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  #signup-form {
+    padding: 0 60px;
+  }
+  
+  input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    height: 5vh;
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+    margin: 0;
+    color: #8a8b8e;
+    border: 1px solid #c2c0ca;
+    font-style: normal;
+    font-size: 16px;
+  }
