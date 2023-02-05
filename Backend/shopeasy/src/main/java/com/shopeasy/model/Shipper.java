@@ -1,10 +1,13 @@
 package com.shopeasy.model;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,15 +19,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PersonalInfo {
-	
+public class Shipper {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer personalId;
-	private String Phone;
-	private String eamil;
-	private String country;
-	private String City;
-	private String pincode;
+	private Integer shipperId;
+	private String  shipperMobile;
+	private String  companyName;
+	
 
+	@OneToMany()
+	private List<Order1> orders=new ArrayList<>();
 }
