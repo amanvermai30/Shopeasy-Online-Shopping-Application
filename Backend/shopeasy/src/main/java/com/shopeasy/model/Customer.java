@@ -1,12 +1,13 @@
 package com.shopeasy.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,17 +21,18 @@ import lombok.ToString;
 @ToString
 public class Customer {
 	
-	 @GeneratedValue(strategy = GenerationType.AUTO)
-	 private Integer id;
-	 private String name;
-	 private String password;
-	 private String mobile;
-	 private String email;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer customerId;
+	private String customerName;
+	
+	 @OneToOne
+	 private PersonalInfo personalInfo;
+ 
+	 @OneToOne
+	 private Cart cart;
 	 
-	 @OneToMany(mappedBy="customer")
-	 private List<Address> address = new ArrayList<>();
-
-	 @OneToMany(mappedBy="customer")
-	 private List<CustomerBankDetails> customerBank = new ArrayList<>();
+	 @OneToMany()
+	 private List<Order1> order;
 
 }

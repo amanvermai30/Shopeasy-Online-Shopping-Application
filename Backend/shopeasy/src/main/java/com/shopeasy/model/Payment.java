@@ -1,13 +1,14 @@
 package com.shopeasy.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -20,18 +21,22 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Cart {
+public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer productId;
-	private Double totalPrice;
-	private Integer numberOfProduct;
+	private Integer paymentId;
 	
+	@Enumerated(EnumType.STRING)
+	private PaymentMethod method;  
+	
+	private LocalDate paymentDate;
 
-	@OneToOne
-	private Customer customer;
-	
-	@OneToMany()
-	private List<Product> products=new ArrayList<>(); 
+	private LocalTime paymentTime;
+
+     private Double paymentAmount;
+     
+  
+    @OneToOne()
+    private Order1 order;
 }
