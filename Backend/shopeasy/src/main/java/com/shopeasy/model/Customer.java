@@ -40,6 +40,6 @@ public class Customer {
 	 private Cart cart;
 	 
 	 @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-	 private List<Order1> order1 = new ArrayList<>();
+	 private List<OrderClass> orderClass = new ArrayList<>();
 
 }

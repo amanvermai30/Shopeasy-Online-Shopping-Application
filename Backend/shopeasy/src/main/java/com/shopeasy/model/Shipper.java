@@ -30,5 +30,5 @@ public class Shipper {
 	
 
 	@OneToMany(mappedBy = "shipper",cascade = CascadeType.ALL)
-	private List<Order1> order1s=new ArrayList<>();
+	private List<OrderClass> orderClass=new ArrayList<>();
 }

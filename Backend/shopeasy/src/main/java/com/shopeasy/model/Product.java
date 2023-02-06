@@ -54,5 +54,5 @@ public class Product {
 	
     @ManyToOne()
     @JoinColumn(name = "orderId")
-    private Order1 order1;
+    private OrderClass orderClass;
 }
