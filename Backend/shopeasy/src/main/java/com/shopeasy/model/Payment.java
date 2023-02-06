@@ -40,5 +40,5 @@ public class Payment {
 //  Bidirectional mapping with payment class which and foreign key orderId
     @OneToOne
     @JoinColumn(name="orderId")
-    private Order1 order1;
+    private OrderClass orderClass;
 }
