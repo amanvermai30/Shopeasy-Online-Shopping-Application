@@ -3,6 +3,7 @@ package com.shopeasy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,6 @@ public class Shipper {
 	private String  companyName;
 	
 
-	@OneToMany()
+	@OneToMany(mappedBy = "shipper",cascade = CascadeType.ALL)
 	private List<Order1> order1s=new ArrayList<>();
 }

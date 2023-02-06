@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -35,16 +36,23 @@ public class Product {
 	
 	
 	@ManyToOne()
+	@JoinColumn(name="categoryId")
 	private Category category;
 
 	@ManyToMany
+	 @JoinTable(
+			    name = "vendor_product", 
+			    joinColumns = @JoinColumn(name = "product_id"), 
+			    inverseJoinColumns = @JoinColumn(name = "vendor_id")
+			  )
 	private List<Vendor> vendors=new ArrayList<>();
 	
 	@ManyToOne
+	@JoinColumn(name="cartId")
 	private Cart cart;
 	
 	
     @ManyToOne()
-    @JoinColumn(name = "order_Id")
+    @JoinColumn(name = "orderId")
     private Order1 order1;
 }

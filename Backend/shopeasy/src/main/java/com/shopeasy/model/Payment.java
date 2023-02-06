@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +37,8 @@ public class Payment {
 
      private Double paymentAmount;
      
-  
-    @OneToOne()
+//  Bidirectional mapping with payment class which and foreign key orderId
+    @OneToOne
+    @JoinColumn(name="orderId")
     private Order1 order1;
 }

@@ -3,10 +3,12 @@ package com.shopeasy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
@@ -28,11 +30,13 @@ public class Vendor {
 	 private String venderName;
 	 
 
-	 @ManyToMany()
+//	 Many to many with product class 
+	 @ManyToMany(mappedBy = "vendors",cascade = CascadeType.ALL)
 	 List<Product> products=new ArrayList<>();
 	 
-	 
+//	One to One Unidirectional with personalInfo  
 	 @OneToOne
+	 @JoinColumn(name="vendorId")
 	 private PersonalInfo personalInfo;
 
 }
