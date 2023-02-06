@@ -35,11 +35,11 @@ public class OrderClass {
 	private Double totalAmount;
 	
 
-	@OneToMany(mappedBy = "order1",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "orderClass",cascade = CascadeType.ALL)
 	private List<Product> products=new ArrayList<>();
 	
 	
-	@OneToOne(mappedBy = "order1")
+	@OneToOne(mappedBy = "orderClass")
 	private Payment payment;
 	
 	
