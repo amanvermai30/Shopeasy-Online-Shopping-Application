@@ -31,7 +31,7 @@ public class Customer {
 
 	
 //	Unidirectional mapping with personalInfo class
-	 @OneToOne
+	 @OneToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name="customerId")
 	 private PersonalInfo personalInfo;
  

@@ -21,10 +21,11 @@ public class PersonalInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer personalId;
-	private String Phone;
-	private String eamil;
+	private String phone;
+	private String email;
+	private String password;
 	private String country;
-	private String City;
+	private String city;
 	private String pincode;
 
 }

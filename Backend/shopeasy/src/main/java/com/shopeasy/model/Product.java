@@ -42,8 +42,8 @@ public class Product {
 	@ManyToMany
 	 @JoinTable(
 			    name = "vendor_product", 
-			    joinColumns = @JoinColumn(name = "product_id"), 
-			    inverseJoinColumns = @JoinColumn(name = "vendor_id")
+			    joinColumns = @JoinColumn(name = "productId"), 
+			    inverseJoinColumns = @JoinColumn(name = "vendorId")
 			  )
 	private List<Vendor> vendors=new ArrayList<>();
 	
