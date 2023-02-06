@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,11 +28,15 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
 	private String customerName;
+
 	
+//	Unidirectional mapping with personalInfo class
 	 @OneToOne
+	 @JoinColumn(name="customerId")
 	 private PersonalInfo personalInfo;
  
-	 @OneToOne
+//  Bidirectional mapping with cart class which will have customerId foreign key 
+	 @OneToOne(mappedBy = "customer")
 	 private Cart cart;
 	 
 	 @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)

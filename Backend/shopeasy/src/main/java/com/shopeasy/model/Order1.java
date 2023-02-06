@@ -39,15 +39,16 @@ public class Order1 {
 	private List<Product> products=new ArrayList<>();
 	
 	
-	@OneToOne()
+	@OneToOne(mappedBy = "order1")
 	private Payment payment;
 	
 	
 	@ManyToOne()
-	@JoinColumn(name = "customer_Id")
+	@JoinColumn(name = "customerId")
 	private Customer customer;
 	
 	
-	@ManyToOne()
+	@ManyToOne
+	@JoinColumn(name="shipperId")
 	private Shipper shipper;
 }
