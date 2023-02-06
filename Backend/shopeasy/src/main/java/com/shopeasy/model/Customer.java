@@ -1,7 +1,9 @@
 package com.shopeasy.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +34,7 @@ public class Customer {
 	 @OneToOne
 	 private Cart cart;
 	 
-	 @OneToMany()
-	 private List<Order1> order;
+	 @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+	 private List<Order1> order1 = new ArrayList<>();
 
 }

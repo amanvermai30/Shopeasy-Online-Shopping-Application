@@ -38,5 +38,5 @@ public class Payment {
      
   
     @OneToOne()
-    private Order1 order;
+    private Order1 order1;
 }

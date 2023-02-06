@@ -5,10 +5,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -33,7 +35,7 @@ public class Order1 {
 	private Double totalAmount;
 	
 
-	@OneToMany()
+	@OneToMany(mappedBy = "order1",cascade = CascadeType.ALL)
 	private List<Product> products=new ArrayList<>();
 	
 	
@@ -42,6 +44,7 @@ public class Order1 {
 	
 	
 	@ManyToOne()
+	@JoinColumn(name = "customer_Id")
 	private Customer customer;
 	
 	
