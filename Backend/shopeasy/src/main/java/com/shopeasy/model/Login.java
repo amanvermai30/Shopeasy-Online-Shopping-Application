@@ -28,5 +28,5 @@ public class Login {
     @NotNull(message = "password cannot set as null")
     @NotEmpty(message =  "password cannot set as empty")
 	@NotBlank(message =  "password cannot set as blank")
-    private String User_Type;
+    private String user_type;
 }

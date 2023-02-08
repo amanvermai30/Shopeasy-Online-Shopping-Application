@@ -39,9 +39,9 @@ public class LoginServiceImpl implements LoginService{
 		
 		CurrentSession currentSession;
 		
-		if( credential.getUser_Type().equals("customer")) {
+		if( credential.getUser_type() != null && "CUSTOMER".equals(credential.getUser_type())) {
 			
-			Customer existingCustomer = personalDao.findCustomerByEmail(credential.getEmail());
+			Customer existingCustomer = personalDao.findByEmail(credential.getEmail());
 			if(existingCustomer == null ) {
 				
 				throw new LoginException("Please Enter a valid CREDENTIALS");
@@ -58,7 +58,7 @@ public class LoginServiceImpl implements LoginService{
 				if(existingCustomer.getPersonalInfo().getPassword().equals(credential.getPassword())) {
 					
 					String key = RandomString.make(6);
-					currentSession = new CurrentSession(existingCustomer.getCustomerId(),key,LocalDateTime.now(),credential.getUser_Type());
+					currentSession = new CurrentSession(existingCustomer.getCustomerId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
 					return "Customer Logged in Successfully Welcome to shopeasy ";
 					
@@ -69,7 +69,7 @@ public class LoginServiceImpl implements LoginService{
 			}
 			
 			
-		}else if(credential.getUser_Type().equals("vendor")) {
+		}else if(credential.getUser_type().equals("vendor")) {
 			
 			
 			Vendor existingVendor = personalDao.findVendorByEmail(credential.getEmail());
@@ -89,7 +89,7 @@ public class LoginServiceImpl implements LoginService{
 				if(existingVendor.getPersonalInfo().getPassword().equals(credential.getPassword())) {
 					
 					String key = RandomString.make(6);
-					currentSession = new CurrentSession(existingVendor.getVendorId(),key,LocalDateTime.now(),credential.getUser_Type());
+					currentSession = new CurrentSession(existingVendor.getVendorId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
 					return "Vendor Logged in Successfully Welcome to shopeasy ";
 					
@@ -120,7 +120,7 @@ public class LoginServiceImpl implements LoginService{
 				if(existingAdmin.getPassword().equals(credential.getPassword())) {
 					
 					String key = RandomString.make(6);
-					currentSession = new CurrentSession(existingAdmin.getAdminId(),key,LocalDateTime.now(),credential.getUser_Type());
+					currentSession = new CurrentSession(existingAdmin.getAdminId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
 					return "Hello Admin Welcome again to shopeasy ";
 					
@@ -131,6 +131,20 @@ public class LoginServiceImpl implements LoginService{
 			}
 		}
 
+	}
+
+	@Override
+	public String logoutUser(String key) throws LoginException {
+		// TODO Auto-generated method stub
+		
+		CurrentSession validSession = sessionDao.findByUuid(key);
+		
+		if( validSession == null ) {
+			throw new LoginException("Please Provide Valid Key");
+		}
+		
+		sessionDao.delete(validSession);
+		return "Logout Successfully";
 	}
 
 }
