@@ -7,4 +7,5 @@ import com.shopeasy.model.Login;
 public interface LoginService {
 
 	public String loginUser(Login credential) throws LoginException;
+	public String logoutUser(String key) throws LoginException;
 }

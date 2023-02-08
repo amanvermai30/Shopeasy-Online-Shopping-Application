@@ -8,6 +8,6 @@ import com.shopeasy.model.Vendor;
 
 public interface PersonalInfoDao extends JpaRepository<PersonalInfo, Integer>{
 
-	public Customer findCustomerByEmail(String email);
+	public Customer findByEmail(String email);
 	public Vendor findVendorByEmail(String email);
 }

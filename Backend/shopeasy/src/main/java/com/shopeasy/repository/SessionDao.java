@@ -6,4 +6,5 @@ import com.shopeasy.model.CurrentSession;
 
 public interface SessionDao extends JpaRepository<CurrentSession, Integer>{
 
+	public CurrentSession findByUuid(String uuid);
 }

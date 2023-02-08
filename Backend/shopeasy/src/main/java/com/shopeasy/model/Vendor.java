@@ -35,8 +35,9 @@ public class Vendor {
 	 List<Product> products=new ArrayList<>();
 	 
 //	One to One Unidirectional with personalInfo  
+//	 @OneToOne(mappedBy = "vendor",cascade = CascadeType.ALL)
+//	 @JoinColumn(name="vendorId")
 	 @OneToOne
-	 @JoinColumn(name="vendorId")
 	 private PersonalInfo personalInfo;
 
 }
