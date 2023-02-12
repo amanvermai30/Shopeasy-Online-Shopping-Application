@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.shopeasy.exception.CustomerException;
 import com.shopeasy.exception.PersonalInfoException;
 import com.shopeasy.model.Customer;
+import com.shopeasy.model.PersonalInfo;
 import com.shopeasy.repository.CustomerDao;
 import com.shopeasy.repository.PersonalInfoDao;
 
@@ -22,18 +23,21 @@ public class CustomerServiceImpl implements CustomerService{
 	public String createCustomerAccount(Customer customer) throws CustomerException,PersonalInfoException {
 		// TODO Auto-generated method stub
 		
-		String outPut = "Customer Account is Not created";
-		
-		Customer cust = customerDao.save(customer);
-		if(cust != null ) {
-			personalInfoDao.save(customer.getPersonalInfo());
-			outPut = "Customer Account is created Successfully";
-			
-		}else {
-			throw new PersonalInfoException("Error while creating customer account: ");
-		}
+		String output = "Customer account was not created.";
 
-		return outPut;
+	    Customer savedCustomer = customerDao.save(customer);
+	    if (savedCustomer != null) {
+	        PersonalInfo personalInfo = customer.getPersonalInfo();
+	        personalInfo.setCustomer(savedCustomer);
+	        personalInfoDao.save(personalInfo);
+
+	        output = "Customer account was created successfully.";
+	    } else {
+	        throw new CustomerException("Error while creating customer account.");
+	    }
+
+	    return output;
+
 	}
 
 }

@@ -28,6 +28,12 @@ public class LoginServiceImpl implements LoginService{
 	PersonalInfoDao personalDao;
 	
 	@Autowired
+	CustomerDao customerDao;
+	
+	@Autowired
+	VendorDao vendorDao;
+	
+	@Autowired
 	AdminDao adminDao;
 	
 	@Autowired
@@ -41,7 +47,7 @@ public class LoginServiceImpl implements LoginService{
 		
 		if( credential.getUser_type() != null && "CUSTOMER".equals(credential.getUser_type())) {
 			
-			Customer existingCustomer = personalDao.findByEmail(credential.getEmail());
+			Customer existingCustomer = customerDao.findByPersonalInfoEmail(credential.getEmail());
 			if(existingCustomer == null ) {
 				
 				throw new LoginException("Please Enter a valid CREDENTIALS");
@@ -72,7 +78,7 @@ public class LoginServiceImpl implements LoginService{
 		}else if(credential.getUser_type().equals("vendor")) {
 			
 			
-			Vendor existingVendor = personalDao.findVendorByEmail(credential.getEmail());
+			Vendor existingVendor = vendorDao.findByPersonalInfoEmail(credential.getEmail());
 			if(existingVendor == null ) {
 				
 				throw new LoginException("Please Enter a valid CREDENTIALS");
