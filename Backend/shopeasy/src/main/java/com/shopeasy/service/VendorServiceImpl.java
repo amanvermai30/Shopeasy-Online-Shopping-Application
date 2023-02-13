@@ -14,6 +14,7 @@ import com.shopeasy.exception.VendorException;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.PersonalInfo;
 import com.shopeasy.model.Product;
+import com.shopeasy.model.UserType;
 import com.shopeasy.model.Vendor;
 import com.shopeasy.repository.PersonalInfoDao;
 import com.shopeasy.repository.ProductDao;
@@ -67,7 +68,7 @@ public class VendorServiceImpl implements VendorService{
 			
 		}else {
 			
-			if(session.getType().equals("customer") || session.getType().equals("admin")){
+			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
 			    throw new LoginException("you are not authorized");	
 			    
 			}else {
@@ -90,7 +91,7 @@ public class VendorServiceImpl implements VendorService{
 			
 		}else {
 			
-			if(session.getType().equals("customer") || session.getType().equals("admin")){
+			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
 			    throw new LoginException("you are not authorized");	
 			    
 			}else {
@@ -136,7 +137,7 @@ public class VendorServiceImpl implements VendorService{
 			
 		}else {
 			
-			if(session.getType().equals("customer") || session.getType().equals("admin")){
+			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
 			    throw new LoginException("you are not authorized");	
 			    
 			}else {
