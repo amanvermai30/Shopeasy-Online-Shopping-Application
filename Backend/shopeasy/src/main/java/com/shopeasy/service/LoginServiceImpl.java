@@ -12,6 +12,7 @@ import com.shopeasy.model.Admin;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.Customer;
 import com.shopeasy.model.Login;
+import com.shopeasy.model.UserType;
 import com.shopeasy.model.Vendor;
 import com.shopeasy.repository.AdminDao;
 import com.shopeasy.repository.CustomerDao;
@@ -45,7 +46,7 @@ public class LoginServiceImpl implements LoginService{
 		
 		CurrentSession currentSession;
 		
-		if( credential.getUser_type() != null && "CUSTOMER".equals(credential.getUser_type())) {
+		if( credential.getUser_type() != null && UserType.CUSTOMER.equals(credential.getUser_type())) {
 			
 			Customer existingCustomer = customerDao.findByPersonalInfoEmail(credential.getEmail());
 			if(existingCustomer == null ) {
@@ -75,7 +76,7 @@ public class LoginServiceImpl implements LoginService{
 			}
 			
 			
-		}else if(credential.getUser_type().equals("vendor")) {
+		}else if(credential.getUser_type().equals(UserType.VENDOR)) {
 			
 			
 			Vendor existingVendor = vendorDao.findByPersonalInfoEmail(credential.getEmail());

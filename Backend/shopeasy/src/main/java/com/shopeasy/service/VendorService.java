@@ -7,6 +7,7 @@ import javax.security.auth.login.LoginException;
 import com.shopeasy.exception.PersonalInfoException;
 import com.shopeasy.exception.ProductException;
 import com.shopeasy.exception.VendorException;
+import com.shopeasy.model.Category;
 import com.shopeasy.model.Product;
 import com.shopeasy.model.Vendor;
 
@@ -23,5 +24,7 @@ public interface VendorService {
 	public String removeProduct(Integer productId,String key) throws ProductException,LoginException,VendorException;
 	
 	public Product viewProductById(Integer productId) throws ProductException,LoginException,VendorException;
+	
+	public String createCategory(Category category,String key) throws LoginException,VendorException;
 	
 }
