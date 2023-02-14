@@ -64,14 +64,10 @@ public class PersonalInfo {
 	@Size(min = 6 ,max = 6 ,message = "pincode is Must Be 6 digit")
 	private String pincode;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy = "personalInfo",cascade = CascadeType.ALL)
-	@JoinColumn(name="personalInfoId")
 	private Customer customer;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy="personalInfo",cascade = CascadeType.ALL)
-	@JoinColumn(name="personalInfoId")
 	private Vendor vendor;
 
 }

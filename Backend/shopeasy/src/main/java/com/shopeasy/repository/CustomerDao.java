@@ -6,4 +6,5 @@ import com.shopeasy.model.Customer;
 
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
 
+	public Customer findByPersonalInfoEmail(String email);
 }

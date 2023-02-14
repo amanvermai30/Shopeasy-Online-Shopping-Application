@@ -34,10 +34,9 @@ public class Vendor {
 	 @ManyToMany(mappedBy = "vendors",cascade = CascadeType.ALL)
 	 List<Product> products=new ArrayList<>();
 	 
-//	One to One Unidirectional with personalInfo  
-//	 @OneToOne(mappedBy = "vendor",cascade = CascadeType.ALL)
-//	 @JoinColumn(name="vendorId")
-	 @OneToOne
+//	 One to One bidirectional with personalInfo  
+	 @OneToOne(cascade = CascadeType.ALL)
+	 @JoinColumn(name = "info_id")
 	 private PersonalInfo personalInfo;
 
 }
