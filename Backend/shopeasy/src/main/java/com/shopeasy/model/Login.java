@@ -1,5 +1,7 @@
 package com.shopeasy.model;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -28,5 +30,6 @@ public class Login {
     @NotNull(message = "password cannot set as null")
     @NotEmpty(message =  "password cannot set as empty")
 	@NotBlank(message =  "password cannot set as blank")
-    private String user_type;
+    @Enumerated(EnumType.STRING)
+    private UserType user_type;
 }

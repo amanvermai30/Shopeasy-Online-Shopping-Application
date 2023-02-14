@@ -3,7 +3,10 @@ package com.shopeasy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +37,8 @@ public class Product {
 	private String productDescription;
 	private Double discount; 
 	
-	
-	@ManyToOne()
-	@JoinColumn(name="categoryId")
-	private Category category;
+	@Enumerated(EnumType.STRING)
+	private CategoryType category_type;
 
 	@ManyToMany
 	 @JoinTable(
@@ -47,7 +48,7 @@ public class Product {
 			  )
 	private List<Vendor> vendors=new ArrayList<>();
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="cartId")
 	private Cart cart;
 	
@@ -55,4 +56,5 @@ public class Product {
     @ManyToOne()
     @JoinColumn(name = "orderId")
     private OrderClass orderClass;
+	
 }

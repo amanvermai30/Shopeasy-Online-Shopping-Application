@@ -32,7 +32,7 @@ public class Cart {
 
 	
 //  Bidirectional mapping with customer class which will have customerId foreign key 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="customerId")
 	private Customer customer;
 	

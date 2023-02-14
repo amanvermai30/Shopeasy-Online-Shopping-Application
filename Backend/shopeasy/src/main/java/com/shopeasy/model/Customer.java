@@ -19,11 +19,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -39,18 +43,15 @@ public class Customer {
 	private String customerName;
 
 	
-//	Unidirectional mapping with personalInfo class
-//	 @OneToOne( mappedBy = "customer", cascade = CascadeType.ALL)
-//	 @JoinColumn(name="customerId")
-	 @OneToOne
+//	 bidirectional mapping with personalInfo class
+	 @OneToOne(cascade = CascadeType.ALL)
+	 @JoinColumn(name="info_id")
 	 private PersonalInfo personalInfo;
  
-//  Bidirectional mapping with cart class which will have customerId foreign key
-	 @JsonIgnore
+//   Bidirectional mapping with cart class which will have customerId foreign key
 	 @OneToOne(mappedBy = "customer")
 	 private Cart cart;
 	 
-	 @JsonIgnore
 	 @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
 	 private List<OrderClass> orderClass = new ArrayList<>();
 

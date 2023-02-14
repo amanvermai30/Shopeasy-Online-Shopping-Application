@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -26,5 +28,6 @@ public class CurrentSession {
 	
 	private LocalDateTime timeStamp;
 
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private UserType user_type;
 }

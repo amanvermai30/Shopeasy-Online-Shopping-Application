@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.shopeasy.exception.PersonalInfoException;
 import com.shopeasy.exception.ProductException;
 import com.shopeasy.exception.VendorException;
+import com.shopeasy.model.CategoryType;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.PersonalInfo;
 import com.shopeasy.model.Product;
@@ -71,10 +72,18 @@ public class VendorServiceImpl implements VendorService{
 			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
 			    throw new LoginException("you are not authorized");	
 			    
-			}else {
+			} else if(product.getCategory_type() == null || 
+			          !product.getCategory_type().equals(CategoryType.MENS)&&
+			          !product.getCategory_type().equals(CategoryType.KIDS) &&
+			          !product.getCategory_type().equals(CategoryType.WOMANS) &&
+			          !product.getCategory_type().equals(CategoryType.ELECTRONICS)) {
+			      
+				throw new ProductException("Sorry Vendor currently we are having only four type of category mens, womans, kids, electronics");
 				
+			} else { 
+			    
 				productDao.save(product);
-				outPut = "Product is added";
+				outPut = "Your product Listed Successufully";
 			}
 		}
 		return outPut;
