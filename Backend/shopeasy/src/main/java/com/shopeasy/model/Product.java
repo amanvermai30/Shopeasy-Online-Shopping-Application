@@ -48,10 +48,6 @@ public class Product {
 			  )
 	private List<Vendor> vendors=new ArrayList<>();
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="cartId")
-	private Cart cart;
-	
 	
     @ManyToOne()
     @JoinColumn(name = "orderId")

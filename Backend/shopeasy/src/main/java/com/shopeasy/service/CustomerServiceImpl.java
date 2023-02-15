@@ -17,6 +17,7 @@ import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.Customer;
 import com.shopeasy.model.PersonalInfo;
 import com.shopeasy.model.Product;
+import com.shopeasy.model.ProductDTO;
 import com.shopeasy.repository.CartDao;
 import com.shopeasy.repository.CustomerDao;
 import com.shopeasy.repository.PersonalInfoDao;
@@ -86,17 +87,53 @@ public class CustomerServiceImpl implements CustomerService{
 			throws CartException, ProductException, CustomerException {
 		// TODO Auto-generated method stub
 		
-        Optional<Product> productOpt = productDao.findById(productId);
-		
-		Optional<Customer> customerOpt = customerDao.findById(customerId);
-		
-		if(customerOpt.isPresent()&& productOpt.isPresent()) {
-			
-			Customer customer = customerOpt.get();
-			
-		}
-		return null;
-	        
-	 }
+		Optional<Product> productOpt = productDao.findById(productId);
+	    Optional<Customer> customerOpt = customerDao.findById(customerId);
 
+	    if (customerOpt.isPresent() && productOpt.isPresent()) {
+	        Customer customer = customerOpt.get();
+	        Product product = productOpt.get();
+
+	        Cart cart = customer.getCart();
+	        if (cart == null) {
+	            cart = new Cart();
+	            cart.setCustomer(customer);
+	        }
+	        
+	       
+            ProductDTO productDto = new ProductDTO();
+            productDto.setCategory_type(product.getCategory_type());
+            productDto.setDiscount(product.getDiscount());
+            productDto.setPicture(product.getPicture());
+            productDto.setPrice(product.getPrice());
+            productDto.setProductDescription(product.getProductDescription());
+            productDto.setProductId(productId);
+            productDto.setProductName(product.getProductName());
+            productDto.setQuantity(quantity);
+            
+	        List<ProductDTO> productList = cart.getProducts();
+	        product.setQuantity(product.getQuantity()-quantity);
+	        productList.add(productDto);
+	        
+//	        for(Product p : productList) {
+//	        	
+//	        	totalQ+=p.getQuantity();
+//	        	totalP+=p.getPrice();
+//	        }
+	        
+	        if(cart.getTotalPrice() == null && cart.getNumberOfProduct() == null ) {
+	        	cart.setTotalPrice(0.0);
+	        	cart.setNumberOfProduct(0);
+	        }
+	        
+	        cart.setTotalPrice(cart.getTotalPrice()+ ((product.getPrice()-product.getPrice()*product.getDiscount()/100)*quantity ) );
+	        cart.setNumberOfProduct(cart.getNumberOfProduct()+quantity);
+	        cartDao.save(cart);
+	        return cart;
+	        
+	    } else {
+	        throw new CartException("Unable to add product to cart");
+	    }
+	}
+	
 }

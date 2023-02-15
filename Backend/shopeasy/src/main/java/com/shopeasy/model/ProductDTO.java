@@ -20,10 +20,6 @@ import lombok.ToString;
 @ToString
 public class ProductDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
 	private Integer productId;
 	private String productName;
 	private String picture;
@@ -34,5 +30,6 @@ public class ProductDTO {
 	
 	@Enumerated(EnumType.STRING)
 	private CategoryType category_type;
+	
 	
 }
