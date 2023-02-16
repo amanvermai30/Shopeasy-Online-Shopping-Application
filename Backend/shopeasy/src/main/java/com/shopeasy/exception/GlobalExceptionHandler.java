@@ -118,4 +118,14 @@ public class GlobalExceptionHandler {
 		return entity;
 	}
 	
+	@ExceptionHandler(OrderClassException.class)
+	public ResponseEntity<ErrorDetails> OrderClassExceptionClassHandler(OrderClassException exception,WebRequest request){
+		
+		
+		ErrorDetails details=new ErrorDetails(LocalDateTime.now(),exception.getMessage(),request.getDescription(false));
+		ResponseEntity<ErrorDetails> entity=new ResponseEntity<ErrorDetails>(details,HttpStatus.BAD_REQUEST); 
+	   
+		return entity;
+	}
+	
 }

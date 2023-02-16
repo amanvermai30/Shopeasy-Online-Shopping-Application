@@ -8,11 +8,11 @@ import javax.security.auth.login.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopeasy.enums.UserType;
 import com.shopeasy.model.Admin;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.Customer;
 import com.shopeasy.model.Login;
-import com.shopeasy.model.UserType;
 import com.shopeasy.model.Vendor;
 import com.shopeasy.repository.AdminDao;
 import com.shopeasy.repository.CustomerDao;
@@ -48,7 +48,7 @@ public class LoginServiceImpl implements LoginService{
 		
 		if( credential.getUser_type() != null && UserType.CUSTOMER.equals(credential.getUser_type())) {
 			
-			Customer existingCustomer = customerDao.findByPersonalInfoEmail(credential.getEmail());
+			Customer existingCustomer = customerDao.findByEmail(credential.getEmail());
 			if(existingCustomer == null ) {
 				
 				throw new LoginException("Please Enter a valid CREDENTIALS");
@@ -62,7 +62,7 @@ public class LoginServiceImpl implements LoginService{
 					throw new LoginException("Customer already Logged In with this Email");
 				}
 				
-				if(existingCustomer.getPersonalInfo().getPassword().equals(credential.getPassword())) {
+				if(existingCustomer.getPassword().equals(credential.getPassword())) {
 					
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(existingCustomer.getCustomerId(),key,LocalDateTime.now(),credential.getUser_type());

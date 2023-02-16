@@ -12,7 +12,7 @@ import com.shopeasy.model.Vendor;
 
 public interface VendorService {
 	
-	public String createCustomerAccount(Vendor vendor) throws VendorException,PersonalInfoException;
+	public String createVendorAccount(Vendor vendor) throws VendorException,PersonalInfoException;
 	
 	public String addProduct(Product product,String key) throws ProductException,LoginException,VendorException;
 	

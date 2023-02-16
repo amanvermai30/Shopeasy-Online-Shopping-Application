@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.shopeasy.enums.PaymentMethod;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,7 +40,7 @@ public class Payment {
      private Double paymentAmount;
      
 //  Bidirectional mapping with payment class which and foreign key orderId
-    @OneToOne
-    @JoinColumn(name="orderId")
-    private OrderClass orderClass;
+//    @OneToOne
+//    @JoinColumn(name="orderId")
+//    private OrderClass orderClass;
 }

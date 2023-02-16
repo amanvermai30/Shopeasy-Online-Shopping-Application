@@ -1,4 +1,4 @@
-package com.shopeasy.model;
+package com.shopeasy.dto;
 
 
 
@@ -8,6 +8,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.shopeasy.enums.CategoryType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
