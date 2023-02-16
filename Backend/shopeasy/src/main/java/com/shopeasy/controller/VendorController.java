@@ -33,9 +33,9 @@ public class VendorController {
 	
 	
 	@PostMapping("/vendor")
-	public ResponseEntity<String> createCustomerAccount(@RequestBody Vendor vendor) throws VendorException,PersonalInfoException{
+	public ResponseEntity<String> createVendorAccount(@RequestBody Vendor vendor) throws VendorException,PersonalInfoException{
 		
-		String outPut = vendorService.createCustomerAccount(vendor);
+		String outPut = vendorService.createVendorAccount(vendor);
 		return new ResponseEntity<String>(outPut,HttpStatus.CREATED);
 	}
 	

@@ -1,4 +1,4 @@
-package com.shopeasy.model;
+package com.shopeasy.enums;
 
 public enum UserType {
 

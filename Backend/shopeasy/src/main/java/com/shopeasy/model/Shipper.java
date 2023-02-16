@@ -29,6 +29,6 @@ public class Shipper {
 	private String  companyName;
 	
 
-	@OneToMany(mappedBy = "shipper",cascade = CascadeType.ALL)
-	private List<OrderClass> orderClass=new ArrayList<>();
+//	@OneToMany(mappedBy = "shipper",cascade = CascadeType.ALL)
+//	private List<OrderClass> orderClass=new ArrayList<>();
 }

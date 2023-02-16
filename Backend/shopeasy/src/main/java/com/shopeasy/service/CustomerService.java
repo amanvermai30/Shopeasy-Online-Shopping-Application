@@ -19,5 +19,5 @@ public interface CustomerService {
 	public List<Product> viewAllProduct(String key) throws ProductException, LoginException,CustomerException;
 	
 	public Cart addProductsToCart(Integer productId,Integer customerId,Integer quantity) throws CartException,ProductException,CustomerException;
-
+	
 }

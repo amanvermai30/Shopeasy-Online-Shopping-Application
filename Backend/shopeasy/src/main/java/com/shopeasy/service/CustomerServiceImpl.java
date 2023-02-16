@@ -8,19 +8,19 @@ import javax.security.auth.login.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopeasy.dto.ProductDTO;
 import com.shopeasy.exception.CartException;
 import com.shopeasy.exception.CustomerException;
 import com.shopeasy.exception.PersonalInfoException;
 import com.shopeasy.exception.ProductException;
+import com.shopeasy.model.Address;
 import com.shopeasy.model.Cart;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.Customer;
-import com.shopeasy.model.PersonalInfo;
 import com.shopeasy.model.Product;
-import com.shopeasy.model.ProductDTO;
+import com.shopeasy.repository.AddressDao;
 import com.shopeasy.repository.CartDao;
 import com.shopeasy.repository.CustomerDao;
-import com.shopeasy.repository.PersonalInfoDao;
 import com.shopeasy.repository.ProductDao;
 import com.shopeasy.repository.SessionDao;
 
@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerDao customerDao;
 	
 	@Autowired
-	private PersonalInfoDao personalInfoDao;
+	private AddressDao addressDao;
 	
 	@Autowired
 	private ProductDao productDao;
@@ -42,6 +42,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CartDao cartDao;
 	
+	
 	@Override
 	public String createCustomerAccount(Customer customer) throws CustomerException,PersonalInfoException {
 		// TODO Auto-generated method stub
@@ -50,11 +51,12 @@ public class CustomerServiceImpl implements CustomerService{
 
 	    Customer savedCustomer = customerDao.save(customer);
 	    if (savedCustomer != null) {
-	        PersonalInfo personalInfo = customer.getPersonalInfo();
-	        personalInfo.setCustomer(savedCustomer);
-	        personalInfoDao.save(personalInfo);
-
-	        output = "Customer account was created successfully.";
+	    	
+	        Address address = savedCustomer.getAddress();
+	        address.setCustomer(savedCustomer);
+	        addressDao.save(address);
+	        output = "Customer account is created successfully.";
+	        
 	    } else {
 	        throw new CustomerException("Error while creating customer account.");
 	    }
@@ -100,6 +102,15 @@ public class CustomerServiceImpl implements CustomerService{
 	            cart.setCustomer(customer);
 	        }
 	        
+//	        checking for available product and required quantity no
+	        if(product.getQuantity() == 0 ) {
+	        	throw new ProductException("Sorry customer product is currently out of stock");
+	        }
+	        
+	        if(product.getQuantity() < quantity) {
+	        	throw new ProductException("Sorry currently for your selected product "+product.getProductName()+" available quantity is "+product.getQuantity()+" so please enter quantity lesser than or equal to available quantity");
+	        }
+	        
 	       
             ProductDTO productDto = new ProductDTO();
             productDto.setCategory_type(product.getCategory_type());
@@ -115,17 +126,13 @@ public class CustomerServiceImpl implements CustomerService{
 	        product.setQuantity(product.getQuantity()-quantity);
 	        productList.add(productDto);
 	        
-//	        for(Product p : productList) {
-//	        	
-//	        	totalQ+=p.getQuantity();
-//	        	totalP+=p.getPrice();
-//	        }
 	        
 	        if(cart.getTotalPrice() == null && cart.getNumberOfProduct() == null ) {
 	        	cart.setTotalPrice(0.0);
 	        	cart.setNumberOfProduct(0);
 	        }
 	        
+//	        giving logic for discount and final price 
 	        cart.setTotalPrice(cart.getTotalPrice()+ ((product.getPrice()-product.getPrice()*product.getDiscount()/100)*quantity ) );
 	        cart.setNumberOfProduct(cart.getNumberOfProduct()+quantity);
 	        cartDao.save(cart);
@@ -135,5 +142,5 @@ public class CustomerServiceImpl implements CustomerService{
 	        throw new CartException("Unable to add product to cart");
 	    }
 	}
-	
+
 }

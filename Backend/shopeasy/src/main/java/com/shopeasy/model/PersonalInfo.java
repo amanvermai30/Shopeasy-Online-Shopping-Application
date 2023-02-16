@@ -48,25 +48,6 @@ public class PersonalInfo {
 	@Size(min = 6 ,max = 6 ,message = "password is Must Be 6 digit")
 	private String password;
 	
-	@NotNull(message = "Country cannot set as null")
-    @NotEmpty(message =  "Country cannot set as empty")
-	@NotBlank(message =  "Country cannot set as blank") 
-	private String country;
-	
-	@NotNull(message = "City cannot set as null")
-    @NotEmpty(message =  "City cannot set as empty")
-	@NotBlank(message =  "City cannot set as blank") 
-	private String city;
-	
-	@NotNull(message = "pincode cannot set as null")
-    @NotEmpty(message =  "pincode name cannot set as empty")
-	@NotBlank(message =  "pincode name cannot set as blank")
-	@Size(min = 6 ,max = 6 ,message = "pincode is Must Be 6 digit")
-	private String pincode;
-	
-	@OneToOne(mappedBy = "personalInfo",cascade = CascadeType.ALL)
-	private Customer customer;
-	
 	@OneToOne(mappedBy="personalInfo",cascade = CascadeType.ALL)
 	private Vendor vendor;
 

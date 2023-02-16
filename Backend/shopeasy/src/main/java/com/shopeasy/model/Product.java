@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.shopeasy.enums.CategoryType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,10 +49,5 @@ public class Product {
 			    inverseJoinColumns = @JoinColumn(name = "vendorId")
 			  )
 	private List<Vendor> vendors=new ArrayList<>();
-	
-	
-    @ManyToOne()
-    @JoinColumn(name = "orderId")
-    private OrderClass orderClass;
 	
 }
