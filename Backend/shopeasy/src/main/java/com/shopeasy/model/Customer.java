@@ -37,7 +37,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Customer {
 	
 	@Id
@@ -72,6 +71,7 @@ public class Customer {
 	 @OneToOne(mappedBy = "customer")
 	 private Cart cart;
 	 
+	 @JsonIgnore
 	 @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
 	 private List<OrderClass> orderClass = new ArrayList<>();
 	 

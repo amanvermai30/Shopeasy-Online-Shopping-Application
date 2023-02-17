@@ -1,35 +1,28 @@
-package com.shopeasy.model;
+package com.shopeasy.dto;
 
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.shopeasy.enums.OrderStatus;
+import com.shopeasy.model.Address;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderClass {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer orderId;
+@ToString
+public class OrderDTO {
 	
+    private Integer orderId;
     private LocalDate orderCreatedAt;
     private LocalDate deliveryDate;
 	private Double totalAmount;
@@ -37,16 +30,8 @@ public class OrderClass {
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus = OrderStatus.NOTSHIPPED;
 	
-	
-	@OneToOne(mappedBy = "orders",cascade = CascadeType.ALL)
-	private Payment payment;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customerId")
-	private Customer customer;
-	
-	
-	@ManyToOne
-	@JoinColumn(name="shipperId")
-	private Shipper shipper;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="address_id")
+	private Address deliveryAddress;
+
 }
