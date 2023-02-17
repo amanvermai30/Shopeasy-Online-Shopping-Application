@@ -1,6 +1,5 @@
 package com.shopeasy.service;
 
-import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
@@ -14,9 +13,5 @@ public interface OrderService {
 	
 	public OrderClass giveYourOrder(OrderClass order,Integer customerId)throws LoginException, CustomerException, CartException, ProductException,OrderClassException;
 
-	public OrderClass updateYourOrder(OrderClass order,String key)throws LoginException, CustomerException, CartException, ProductException;
-
-	public OrderClass deleteYourOrder(OrderClass order,String key)throws LoginException, CustomerException, CartException, ProductException;
-
-	public List<OrderClass> viewAllOrderByUserId(Integer userid) throws CustomerException;
+	public OrderClass cancelYourOrder(Integer orderId,String key)throws LoginException, CustomerException, CartException, ProductException,OrderClassException;
 }

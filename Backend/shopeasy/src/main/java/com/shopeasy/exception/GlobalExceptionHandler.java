@@ -128,4 +128,14 @@ public class GlobalExceptionHandler {
 		return entity;
 	}
 	
+	@ExceptionHandler(PaymentException.class)
+	public ResponseEntity<ErrorDetails> paymentClassHandler(PaymentException exception,WebRequest request){
+		
+		
+		ErrorDetails details=new ErrorDetails(LocalDateTime.now(),exception.getMessage(),request.getDescription(false));
+		ResponseEntity<ErrorDetails> entity=new ResponseEntity<ErrorDetails>(details,HttpStatus.BAD_REQUEST); 
+	   
+		return entity;
+	}
+	
 }

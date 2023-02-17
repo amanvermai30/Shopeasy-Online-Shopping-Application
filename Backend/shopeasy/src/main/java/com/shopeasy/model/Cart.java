@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.shopeasy.dto.OrderDTO;
 import com.shopeasy.dto.ProductDTO;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,6 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Cart {
 
 	@Id
@@ -34,14 +34,12 @@ public class Cart {
 	private Integer cartId;
 	private Double totalPrice;
 	private Integer numberOfProduct;
-
 	
 //  Bidirectional mapping with customer class which will have customerId foreign key 
-	
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="customerId")
-	private Customer customer;
+	 @JsonIgnore
+	 @OneToOne(cascade = CascadeType.ALL)
+	 @JoinColumn(name="customerId")
+	 private Customer customer;
 	
 	 @Embedded
 	 @ElementCollection
