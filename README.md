@@ -14,3 +14,7 @@ About Shopeasy - Hello world ! welcome to shopeasy.com we are delighted that we 
 - Choose the plan that’s right for you
 - Finish setting up your account
 - List your products.
+
+## ER Diagram
+
+![shop](https://user-images.githubusercontent.com/105967008/219798997-dcb20c24-b2fc-4082-bf7b-7a752b162a27.jpg)
