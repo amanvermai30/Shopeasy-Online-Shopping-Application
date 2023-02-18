@@ -15,6 +15,11 @@ About Shopeasy - Hello world ! welcome to shopeasy.com we are delighted that we 
 - Finish setting up your account
 - List your products.
 
+**currently we are not taking any subscription , you just need to create your account and sell your product.**
+
 ## ER Diagram
 
 ![shop](https://user-images.githubusercontent.com/105967008/219798997-dcb20c24-b2fc-4082-bf7b-7a752b162a27.jpg)
+
+## For more details visit notion
+    [http://localhost:8090/swagger-ui/index.html](https://unequaled-pulsar-4bd.notion.site/Shopeasy-com-43bb81d8e3034d87ad4ccdb6ea996c82)
