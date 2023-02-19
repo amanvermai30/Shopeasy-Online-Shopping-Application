@@ -41,6 +41,10 @@ body{
 .navbar .menu-item ul li:hover{
     cursor: pointer;
 }
+.navbar .menu-item ul a{
+    text-decoration: none;
+    padding: 0 0 0 2em;
+}
 
 /* Image section */
 
@@ -117,7 +121,7 @@ body{
 .text{
     position: absolute;
     top: 46%;
-    left: 54.1%;
+    left: 51.1%;
     transform: translate(-50%, -50%);
     white-space: nowrap;
     width: 74%;
@@ -151,7 +155,7 @@ body{
     height: 40px;
     width: 100%;
     /* padding-left: 0.6em; */
-    padding: 1em 0 0 0.6em;
+    padding: 1em 1em 0 0.6em;
 }
 
 .text p .text-bar{
@@ -175,7 +179,7 @@ body{
 .btn {
     font-size: 1em;
     border-radius: 5px;
-    padding: .8em 1em;
+    padding: .8em 2em;
     cursor: pointer;
     border: none;
     background-color: aquamarine;
