@@ -1,10 +1,12 @@
 package com.shopeasy.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,13 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shopeasy.exception.PersonalInfoException;
 import com.shopeasy.exception.ProductException;
 import com.shopeasy.exception.VendorException;
 import com.shopeasy.model.Product;
 import com.shopeasy.model.Vendor;
+import com.shopeasy.service.FileService;
 import com.shopeasy.service.VendorService;
 
 @RestController
@@ -33,7 +38,10 @@ public class VendorController {
 	
 	
 	@PostMapping("/vendor")
-	public ResponseEntity<String> createVendorAccount(@RequestBody Vendor vendor) throws VendorException,PersonalInfoException{
+	public ResponseEntity<String> createVendorAccount(@RequestBody Vendor vendor) throws VendorException,PersonalInfoException, IOException{
+		
+//		processing and uploading file
+//		this.fileService.uploadImage(path, image);
 		
 		String outPut = vendorService.createVendorAccount(vendor);
 		return new ResponseEntity<String>(outPut,HttpStatus.CREATED);

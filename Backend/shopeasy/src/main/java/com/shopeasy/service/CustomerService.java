@@ -20,4 +20,6 @@ public interface CustomerService {
 	
 	public Cart addProductsToCart(Integer productId,Integer customerId,Integer quantity) throws CartException,ProductException,CustomerException;
 	
+	public Customer updateCustomer(Customer customer,String key)throws CustomerException;
+	
 }

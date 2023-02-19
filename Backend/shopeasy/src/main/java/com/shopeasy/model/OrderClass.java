@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shopeasy.enums.OrderStatus;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class OrderClass {
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus = OrderStatus.NOTSHIPPED;
 	
-	
+	@JsonIgnore
 	@OneToOne(mappedBy = "orders",cascade = CascadeType.ALL)
 	private Payment payment;
 	
@@ -45,7 +46,7 @@ public class OrderClass {
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="shipperId")
 	private Shipper shipper;

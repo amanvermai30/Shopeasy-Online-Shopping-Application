@@ -10,8 +10,11 @@ import com.shopeasy.enums.PaymentStatus;
 import com.shopeasy.exception.CustomerException;
 import com.shopeasy.exception.OrderClassException;
 import com.shopeasy.exception.PaymentException;
+import com.shopeasy.model.Cart;
 import com.shopeasy.model.OrderClass;
 import com.shopeasy.model.Payment;
+import com.shopeasy.model.Product;
+import com.shopeasy.repository.CartDao;
 import com.shopeasy.repository.OrderClassDao;
 import com.shopeasy.repository.PaymentDao;
 
@@ -24,6 +27,9 @@ public class PaymentServiceImpl implements PaymentService{
 	@Autowired
 	private PaymentDao paymentDao;
 	
+	@Autowired
+	private CartDao cartDao; 
+	
 	@Override
 	public Payment giveYourPayment(Payment payment, Integer orderId)
 			throws PaymentException, CustomerException, OrderClassException {
@@ -31,18 +37,24 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		Optional<OrderClass> orderOpt = orderDao.findById(orderId);
 		OrderClass order = orderOpt.get();
+		Payment outPut = null;
 		
 		if(order == null ) {
 			throw new OrderClassException("Order not found ");
 		}
 		
+		// I am taking this cart so that after payment I can empty customer cart -> there should not any product;
+		Cart cart= order.getCustomer().getCart();
+		
 		payment.setPaymentCreatedAtDate(LocalDate.now());
 		payment.setPaymentAmount(order.getTotalAmount());
 		payment.setOrders(order);
 		payment.setPaymentStatus(PaymentStatus.SUCCESSFULLY);
-		order.setPayment(payment);
 		orderDao.save(order);
-		return paymentDao.save(payment);
+		outPut  = paymentDao.save(payment);
+		cartDao.delete(cart);
+		
+		return outPut;
 	}
 
 	@Override

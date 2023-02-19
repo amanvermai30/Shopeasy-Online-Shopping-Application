@@ -48,6 +48,31 @@ public class PersonalInfo {
 	@Size(min = 6 ,max = 6 ,message = "password is Must Be 6 digit")
 	private String password;
 	
+	@NotNull(message = "password cannot set as null")
+    @NotEmpty(message =  "password cannot set as empty")
+	@NotBlank(message =  "password cannot set as blank")
+	private String imageUrl;
+	
+	@NotNull(message = "image cannot set as null")
+    @NotEmpty(message =  "image cannot set as empty")
+	@NotBlank(message =  "image cannot set as blank")
+	private String country;
+	
+	@NotNull(message = "image cannot set as null")
+    @NotEmpty(message =  "image cannot set as empty")
+	@NotBlank(message =  "image cannot set as blank")
+	private String state;
+	
+	@NotNull(message = "image cannot set as null")
+    @NotEmpty(message =  "image cannot set as empty")
+	@NotBlank(message =  "image cannot set as blank")
+	private String city;
+	
+	@NotNull(message = "image cannot set as null")
+    @NotEmpty(message =  "image cannot set as empty")
+	@NotBlank(message =  "image cannot set as blank")
+	private String pincode;
+	
 	@OneToOne(mappedBy="personalInfo",cascade = CascadeType.ALL)
 	private Vendor vendor;
 

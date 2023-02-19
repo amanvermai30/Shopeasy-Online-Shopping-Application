@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 		order.setDeliveryDate(LocalDate.now().plusDays(1));
 		order.setOrderCreatedAt(LocalDate.now());
-		order.setOrderStatus(OrderStatus.SHIPPED);
+		order.setOrderStatus(OrderStatus.NOTSHIPPED);
 		order.setTotalAmount(customer.getCart().getTotalPrice());
 		customer.getOrderClass().add(order);
 		order.setCustomer(customer);
@@ -87,11 +87,6 @@ public class OrderServiceImpl implements OrderService {
 		
 		customer.getOrderClass().remove(orders);
 		customerDao.save(customer);
-		for(ProductDTO pro:customer.getCart().getProducts()) {
-			
-			pro.setQuantity(pro.getQuantity()+customer.getCart().getNumberOfProduct());
-		}
-		
 		orderDao.delete(orders);
 		
 		return orders;

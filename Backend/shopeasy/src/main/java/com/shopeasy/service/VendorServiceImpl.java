@@ -1,12 +1,15 @@
 package com.shopeasy.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.security.auth.login.LoginException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shopeasy.enums.CategoryType;
 import com.shopeasy.enums.UserType;
@@ -38,11 +41,11 @@ public class VendorServiceImpl implements VendorService{
 	ProductDao productDao;
 
 	@Override
-	public String createVendorAccount(Vendor vendor) throws VendorException, PersonalInfoException {
+	public String createVendorAccount(Vendor vendor) throws VendorException, PersonalInfoException,IOException {
 		// TODO Auto-generated method stub
 		
         String outPut = "Customer Account is Not created";
-		
+        
 		Vendor ven = vendorDao.save(vendor);
 		if(ven != null ) {
 			
