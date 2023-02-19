@@ -129,7 +129,17 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(PaymentException.class)
-	public ResponseEntity<ErrorDetails> paymentClassHandler(PaymentException exception,WebRequest request){
+	public ResponseEntity<ErrorDetails> paymentExceptionHandler(PaymentException exception,WebRequest request){
+		
+		
+		ErrorDetails details=new ErrorDetails(LocalDateTime.now(),exception.getMessage(),request.getDescription(false));
+		ResponseEntity<ErrorDetails> entity=new ResponseEntity<ErrorDetails>(details,HttpStatus.BAD_REQUEST); 
+	   
+		return entity;
+	}
+	
+	@ExceptionHandler(AdminException.class)
+	public ResponseEntity<ErrorDetails> adminExceptionHandler(AdminException exception,WebRequest request){
 		
 		
 		ErrorDetails details=new ErrorDetails(LocalDateTime.now(),exception.getMessage(),request.getDescription(false));

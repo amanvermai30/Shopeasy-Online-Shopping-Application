@@ -1,8 +1,12 @@
 package com.shopeasy.service;
 
+
+import java.io.IOException;
 import java.util.List;
 
 import javax.security.auth.login.LoginException;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shopeasy.exception.PersonalInfoException;
 import com.shopeasy.exception.ProductException;
@@ -12,7 +16,7 @@ import com.shopeasy.model.Vendor;
 
 public interface VendorService {
 	
-	public String createVendorAccount(Vendor vendor) throws VendorException,PersonalInfoException;
+	public String createVendorAccount(Vendor vendor) throws VendorException,PersonalInfoException,IOException;
 	
 	public String addProduct(Product product,String key) throws ProductException,LoginException,VendorException;
 	

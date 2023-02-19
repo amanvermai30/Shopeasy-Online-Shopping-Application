@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shopeasy.enums.UserType;
-import com.shopeasy.model.Admin;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.Customer;
 import com.shopeasy.model.Login;
 import com.shopeasy.model.Vendor;
-import com.shopeasy.repository.AdminDao;
 import com.shopeasy.repository.CustomerDao;
 import com.shopeasy.repository.PersonalInfoDao;
 import com.shopeasy.repository.SessionDao;
@@ -33,9 +31,6 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Autowired
 	VendorDao vendorDao;
-	
-	@Autowired
-	AdminDao adminDao;
 	
 	@Autowired
     SessionDao sessionDao;
@@ -110,24 +105,23 @@ public class LoginServiceImpl implements LoginService{
 		}else {
 			
 			
-			Admin existingAdmin = adminDao.findByEmail(credential.getEmail());
-			if(existingAdmin == null ) {
+			if(!credential.getEmail().equals("admin@gmail.com") ) {
 				
 				throw new LoginException("Please Enter a valid CREDENTIALS");
 				
 			}else {
 				
 				
-				Optional<CurrentSession> validAdminSessionOpt = sessionDao.findById(existingAdmin.getAdminId());
+				Optional<CurrentSession> validAdminSessionOpt = sessionDao.findById(0);
 				if(validAdminSessionOpt.isPresent()) {
 					
 					throw new LoginException("Admin already Logged In with this Email");
 				}
 				
-				if(existingAdmin.getPassword().equals(credential.getPassword())) {
+				if("admin".equals(credential.getPassword())) {
 					
 					String key = RandomString.make(6);
-					currentSession = new CurrentSession(existingAdmin.getAdminId(),key,LocalDateTime.now(),credential.getUser_type());
+					currentSession = new CurrentSession(0,key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
 					return "Hello Admin Welcome again to shopeasy ";
 					

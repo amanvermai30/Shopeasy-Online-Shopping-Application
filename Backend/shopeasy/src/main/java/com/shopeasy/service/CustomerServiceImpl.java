@@ -123,7 +123,7 @@ public class CustomerServiceImpl implements CustomerService{
             productDto.setQuantity(quantity);
             
 	        List<ProductDTO> productList = cart.getProducts();
-	        product.setQuantity(product.getQuantity()-quantity);
+//	        product.setQuantity(product.getQuantity()-quantity);
 	        productList.add(productDto);
 	        
 	        
@@ -141,6 +141,24 @@ public class CustomerServiceImpl implements CustomerService{
 	    } else {
 	        throw new CartException("Unable to add product to cart");
 	    }
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer, String key) throws CustomerException {
+		// TODO Auto-generated method stub
+		
+        CurrentSession loggedInUser = sessionDao.findByUuid(key);
+		
+		if(loggedInUser == null)
+			throw new CustomerException("Please enter valid key");
+		
+		
+		if(customer.getCustomerId() == loggedInUser.getId()) {
+			return customerDao.save(customer);
+		}
+		else {
+			throw new CustomerException("Invalid customer details, please login first!");
+		}
 	}
 
 }
