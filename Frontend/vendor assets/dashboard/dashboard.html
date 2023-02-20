@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dashboard.css">
+    <script src="https://kit.fontawesome.com/583f110147.js" crossorigin="anonymous"></script>
+
+    <title>Vendor Dashboard</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navBar">
+            <img id="logo" src="../Assets/logo.png" alt="logo">
+        </nav>
+    </header>
+
+    <body>
+        <div class="container">
+            <div class="side-nav">
+                <ul class="navigation-dashboard">
+                    <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="#"><i class="fa-brands fa-product-hunt"></i> Create Product</a></li>
+                    <li><a href="#"><i class="fa-solid fa-eye"></i> See your all products</a></li>
+                    <li><a href="#"><i class="fa-solid fa-list"></i> See your orders list</a></li>
+                    <li><a href="#"><i class="fa-solid fa-ban"></i> Order which are cancelled or refunded</a></li>
+                    <li><a href="#"><i class="fa-solid fa-money-bill"></i> Track your sales</a></li>
+                    <li><a href="#"><i class="fa-solid fa-money-check-dollar"></i> Track your Revenue</a></li>
+                </ul>
+            </div>
+
+            <div class="profile">
+                <div class="profile__img--container">
+                    <div></div>
+                    <img src="../Assets/user.png" alt="Profile" style="width: 150px;">
+                </div>
+                <div class="profile__info">
+                    <form>
+                        <input type="text" value="Name" class="form__info--data">
+                        <input type="email" value="email@mail.com" class="form__info--data">
+                        <input type="text" value="User Name" class="form__info--data">
+                        <input type="text" value="Address" class="form__info--data">
+                        <input type="text" value="Address" class="form__info--data">
+                        <div style="margin-top: 2em;">
+                            <button type="submit" class="btn">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</body>
+</html>

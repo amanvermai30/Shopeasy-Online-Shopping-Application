@@ -22,7 +22,6 @@ function userSignup(e) {
 
   let profileImage = document.getElementById("image").value;
 
-
   const vendor = {
     venderName: name,
     personalInfo: {
@@ -30,7 +29,7 @@ function userSignup(e) {
       email: email,
       password: password,
       country: country,
-      imageUrl:profileImage,
+      imageUrl: profileImage,
       state: state,
       city: city,
       pincode: pincode,
@@ -38,31 +37,45 @@ function userSignup(e) {
   };
 
   userSignUpFun(vendor);
-
 }
-
-
 
 // now I am sending data
 
-let userSignUpFun = async (obj) =>{
-    
+let userSignUpFun = async (obj) => {
 
+  try {
     let res = await fetch("http://localhost:8888/vendorController/vendor", {
-        method: "POST",
-        body: JSON.stringify(obj),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-    
-      // let data = await res.json();
-      // return data;
-      // console.log(res.json());
-      alert("Vendor created successfuly")
-      window.location.href = "../vendor login/login.html";
-      return res;
-     
-  }
-  
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
+    if (res.ok) {
+      console.log("sucesss");
+      let data = await res.json();
+
+      // To get data from response   // user data
+      // let userData=JSON.stringify(data)
+      let d = JSON.stringify(data);
+
+      console.log(d);
+      alert("Vendor created successfuly");
+      
+    } else {
+      let data = await res.json();
+      let error = JSON.stringify(data);
+
+      let msg = JSON.parse(error);
+
+      console.log(msg);
+      alert(msg.message);
+    }
+
+  } catch (error) {
+    console.log(error);
+    alert("Vendor created successfuly");
+    window.location.href = "../vendor login/login.html";
+  }
+};
