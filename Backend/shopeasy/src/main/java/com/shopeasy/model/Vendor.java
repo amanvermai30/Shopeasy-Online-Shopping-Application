@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +36,7 @@ public class Vendor {
 	 @ManyToMany(mappedBy = "vendors",cascade = CascadeType.ALL)
 	 List<Product> products=new ArrayList<>();
 	 
-//	 One to One bidirectional with personalInfo  
+//	 One to One bidirectional with personalInfo 
 	 @OneToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name = "info_id")
 	 private PersonalInfo personalInfo;

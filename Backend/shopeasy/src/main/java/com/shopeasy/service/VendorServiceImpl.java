@@ -178,4 +178,19 @@ public class VendorServiceImpl implements VendorService{
 		return productDao.findById(productId).orElseThrow(()-> new ProductException("Product not found with this Id"+productId));
 	}
 
+	@Override
+	public Vendor getSingalVendor(String key) throws LoginException{
+		// TODO Auto-generated method stub
+		
+		CurrentSession session  = sessionDao.findByUuid(key);
+		
+		if(session == null ) {
+			throw new LoginException("Vendor Not logged In");
+		}
+		Optional<Vendor>  venOpt = vendorDao.findById(session.getId());
+		Vendor vendor = venOpt.get();
+		
+		return vendor;
+	}
+	
 }

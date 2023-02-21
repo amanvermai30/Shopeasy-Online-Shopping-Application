@@ -73,6 +73,7 @@ public class PersonalInfo {
 	@NotBlank(message =  "image cannot set as blank")
 	private String pincode;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy="personalInfo",cascade = CascadeType.ALL)
 	private Vendor vendor;
 

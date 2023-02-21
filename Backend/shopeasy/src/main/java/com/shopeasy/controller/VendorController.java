@@ -81,5 +81,13 @@ public class VendorController {
 		Product outPut= vendorService.viewProductById(productId);
 		return new ResponseEntity<Product>(outPut,HttpStatus.CREATED);
 	}
+	
+	@GetMapping("/singalvendor/{key}")
+	public ResponseEntity<Vendor> getSingalVendor(@PathVariable("key") String key) throws LoginException{
+		
+		Vendor vendor = vendorService.getSingalVendor(key);
+		return new ResponseEntity<Vendor>(vendor, HttpStatus.ACCEPTED);
+		
+	}
 
 }
