@@ -12,6 +12,7 @@ import com.shopeasy.enums.UserType;
 import com.shopeasy.model.CurrentSession;
 import com.shopeasy.model.Customer;
 import com.shopeasy.model.Login;
+import com.shopeasy.model.LoginResponse;
 import com.shopeasy.model.Vendor;
 import com.shopeasy.repository.CustomerDao;
 import com.shopeasy.repository.PersonalInfoDao;
@@ -36,7 +37,7 @@ public class LoginServiceImpl implements LoginService{
     SessionDao sessionDao;
 	
 	@Override
-	public String loginUser(Login credential) throws LoginException {
+	public LoginResponse loginUser(Login credential) throws LoginException {
 		// TODO Auto-generated method stub
 		
 		CurrentSession currentSession;
@@ -62,7 +63,7 @@ public class LoginServiceImpl implements LoginService{
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(existingCustomer.getCustomerId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
-					return "Customer Logged in Successfully Welcome to shopeasy ";
+					return new LoginResponse("Customer Logged in Successfully Welcome to shopeasy ",key);
 					
 				}else {
 					throw new LoginException("Wrong Password");
@@ -93,7 +94,7 @@ public class LoginServiceImpl implements LoginService{
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(existingVendor.getVendorId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
-					return "Vendor Logged in Successfully Welcome to shopeasy ";
+					return new LoginResponse("Vendor Logged in Successfully Welcome to shopeasy ",key);
 					
 				}else {
 					throw new LoginException("Wrong Password");
@@ -123,7 +124,7 @@ public class LoginServiceImpl implements LoginService{
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(0,key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
-					return "Hello Admin Welcome again to shopeasy ";
+					return new LoginResponse("Hello Admin Welcome again to shopeasy ",key);
 					
 				}else {
 					throw new LoginException("Wrong Password");

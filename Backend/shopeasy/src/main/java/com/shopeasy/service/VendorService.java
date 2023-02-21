@@ -28,4 +28,6 @@ public interface VendorService {
 	
 	public Product viewProductById(Integer productId) throws ProductException,LoginException,VendorException;
 	
+	public Vendor getSingalVendor(String key)throws LoginException;
+	
 }
