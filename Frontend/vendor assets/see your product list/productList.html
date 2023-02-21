@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./productList.css">
+  <title>See your all products</title>
+
+</head>
+<body>
+
+    <!-- navbar -->
+    <div id="nav">
+        <div id="navLeft">
+            <img src="../Assets/logo.png" alt="">
+            <div><a href="../dashboard/dashboard.html">Dashboard</a></div>
+            <div><a href="">Sales</a></div>
+            <div><a href="">Orders</a></div>
+        </div>
+        <div id="navRight">
+            <input type="text" placeholder="search by Id" id="search-input">
+            <button class="search">search </button>
+            <button class="reset">Reset  </button>
+        </div>
+    
+    </div>
+
+    <div class="container">
+        <div class="list__of--orders">
+            <h1>All Products List</h1>
+
+            <table id="customers">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Market Price</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Description</th>
+                    <th>category</th>
+                    <th>After Discount Price</th>
+                </tr>
+                <!-- append all data here in th inside tr -->
+            </table>
+        </div>
+
+    </div>
+  <script src="./productList.js"></script>
+</body>
+</html>

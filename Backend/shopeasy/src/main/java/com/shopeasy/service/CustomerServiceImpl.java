@@ -116,7 +116,8 @@ public class CustomerServiceImpl implements CustomerService{
             productDto.setCategory_type(product.getCategory_type());
             productDto.setDiscount(product.getDiscount());
             productDto.setPicture(product.getPicture());
-            productDto.setPrice(product.getPrice());
+            productDto.setMarketPrice(product.getMarketPrice());
+            productDto.setAfterDiscountPrice(product.getAfterDiscountPrice());
             productDto.setProductDescription(product.getProductDescription());
             productDto.setProductId(productId);
             productDto.setProductName(product.getProductName());
@@ -133,7 +134,7 @@ public class CustomerServiceImpl implements CustomerService{
 	        }
 	        
 //	        giving logic for discount and final price 
-	        cart.setTotalPrice(cart.getTotalPrice()+ ((product.getPrice()-product.getPrice()*product.getDiscount()/100)*quantity ) );
+	        cart.setTotalPrice(cart.getTotalPrice()+ ((product.getMarketPrice())-(product.getMarketPrice()*product.getDiscount()/100)*quantity ) );
 	        cart.setNumberOfProduct(cart.getNumberOfProduct()+quantity);
 	        cartDao.save(cart);
 	        return cart;

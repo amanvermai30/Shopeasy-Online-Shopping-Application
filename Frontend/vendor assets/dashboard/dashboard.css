@@ -205,8 +205,9 @@ svg {
     position: absolute;
     top: 3em;
     left: 2em;
-    height: 150px;
-    width: 170px;
+    object-fit: cover;
+    width: 140px;
+    aspect-ratio: 1;
     border-radius: 50%;
     border: 5px solid white;
 }
@@ -218,9 +219,12 @@ svg {
     background-color: #efcbcb;
     box-shadow:7px 7px 15px #c6d3e7;
 }
-.form__info--data {
+.form__info--data  {
     border: none;
     outline: none;
+    margin-right: 1em;
+    width: 15em;
+    
 }
 
 .btn {
@@ -230,6 +234,8 @@ svg {
     cursor: pointer;
     border: none;
     background-color: aquamarine;
+    margin-top: 2em;
+    margin-right: 1em;
 }
 
 .btn:hover {

@@ -67,6 +67,7 @@ public class VendorServiceImpl implements VendorService{
 		
 		String outPut = "Product is Not added";
 		CurrentSession session = sessionDao.findByUuid(key);
+		
 		if(session == null ) {
 			throw new LoginException("Vendor Not logged in ");
 			
@@ -83,11 +84,21 @@ public class VendorServiceImpl implements VendorService{
 			      
 				throw new ProductException("Sorry Vendor currently we are having only four type of category mens, womans, kids, electronics");
 				
-			} else { 
-			    
-				productDao.save(product);
-				outPut = "Your product Listed Successufully";
 			}
+			
+			Optional<Vendor> vendorOpt = vendorDao.findById(session.getId());
+			Vendor vendor = vendorOpt.get();
+			
+	    
+			double discountAmount = product.getMarketPrice()*(product.getDiscount()/100.0);
+			double finalPrice = product.getMarketPrice()-discountAmount;
+			product.setAfterDiscountPrice(finalPrice);
+			product.getVendors().add(vendor);
+			vendor.getProducts().add(product);
+			productDao.save(product);
+//			vendorDao.save(vendor);
+			outPut = "Your product Listed Successufully";
+			
 		}
 		return outPut;
 	}
