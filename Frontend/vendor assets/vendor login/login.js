@@ -1,6 +1,6 @@
 document.querySelector("form").addEventListener("submit", userSignup);
 
-function userSignup(e) {
+async function userSignup(e) {
   e.preventDefault();
   console.log("working");
 
@@ -13,15 +13,23 @@ function userSignup(e) {
     user_type: "VENDOR",
   };
 
-  userSignUpFun(loginData);
-}
+  try {
+    const sessionKey = await userSignUpFun(loginData);
+    localStorage.setItem('sessionKey', sessionKey);
+    console.log(sessionKey);
+    alert("Vendor login successfully");
+    window.location.href = "../dashboard/dashboard.html";
+  } catch (error) {
+    console.error(error);
+    alert("Error: " + error.message);
+  }
 
-// now I am sending data
+}
 
 let userSignUpFun = async (obj) => {
 
   try {
-    let res = await fetch("http://localhost:8888/loginController/login", {
+    const res = await fetch("http://localhost:8888/loginController/login", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
@@ -30,33 +38,22 @@ let userSignUpFun = async (obj) => {
     });
 
     if (res.ok) {
-      console.log("sucesss");
+      console.log("success");
+      const data = await res.json();
+      return data.sessionKey;
 
-      let data = await res.json();
-
-      const sessionKey = res.headers.get('Session-Key');
-      console.log(res.headers);
-      console.log(sessionKey);
-      // To get data from response   // user data
-      // let userData=JSON.stringify(data)
-      localStorage.setItem('loginToken', sessionKey);
-      let d = JSON.stringify(data);
-
-      console.log(d);
-      alert("Vendor Login successfuly");
     } else {
-      let data = await res.json();
-      let error = JSON.stringify(data);
 
-      let msg = JSON.parse(error);
-
+      const data = await res.json();
+      const error = JSON.stringify(data);
+      const msg = JSON.parse(error);
       console.log(msg);
-      alert(msg.message);
+      throw new Error(msg.message);
+
     }
   } catch (error) {
     console.log(error);
-    alert("Vendor Login successfuly");
-    // window.location.href = "../vendor login/login.html";
+    throw new Error(error);
   }
 
 };

@@ -198,12 +198,15 @@ svg {
 .profile__img--container {
     position: relative;
     height: 200px;
+    /* border: 2px solid red; */
 }
 
 .profile__img--container > img {
     position: absolute;
     top: 3em;
     left: 2em;
+    height: 150px;
+    width: 170px;
     border-radius: 50%;
     border: 5px solid white;
 }
