@@ -3,7 +3,7 @@
 const sessionKey = localStorage.getItem("sessionKey");
 console.log(sessionKey);
 
-let vendorLoggedin = async (obj) => {
+let vendorLoggedin = async () => {
     try {
         const res = await fetch(
             `http://localhost:8888/vendorController/singalvendor/${sessionKey}`,
@@ -42,29 +42,36 @@ let appendData = (data) => {
     const img = document.createElement("img");
     img.src = data.personalInfo.imageUrl;
 
-    // creating form tag, input tag and label 
+    // creating form tag, input tag and label tag
     const form = document.createElement("form");
+    const btnDiv = document.createElement("div");
+    const btn = document.createElement("button");
+    const btn2 = document.createElement("button");
+    btn2.innerText = "Edit";
+    btn2.className = "btn";
+    btn.innerText = "Update";
+    btn.className = "btn";
 
-    const allLabelName = ["Name", "Phone", "Email", "Password", "Country", "State", "City", "Pincode"];
+
     const inputs = [];
     const values = [data.venderName, data.personalInfo.phone, data.personalInfo.email, data.personalInfo.password, data.personalInfo.country, data.personalInfo.state, data.personalInfo.city, data.personalInfo.pincode,];
 
-    for (let i = 0; i < allLabelName.length; i++) {
-        const label = document.createElement("label");
-        label.innerHTML = allLabelName[i];
+    for (let i = 0; i < 8; i++) {
 
         const input = document.createElement("input");
+        input.className = "form__info--data";
 
-        input.name = allLabelName[i];
         input.value = values[i];
         inputs.push(input);
-        form.appendChild(label);
         form.appendChild(input);
     }
 
     // appending input to form to profileContainer& img to imgcontainer
     Imgcontainer.append(img);
+    btnDiv.append(btn,btn2);
+    form.appendChild(btnDiv)
     profileContainer.append(form);
+    console.log(data)
 };
 
 // calling  api for vendor data after login
@@ -72,3 +79,5 @@ window.addEventListener("load", async () => {
     const vendorData = await vendorLoggedin();
     appendData(vendorData);
 });
+
+
