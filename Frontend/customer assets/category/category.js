@@ -1,12 +1,14 @@
-//  get vendor profile- get request
 
+
+// taking data from local storage
 const sessionKey = localStorage.getItem("sessionKey");
-console.log(sessionKey);
+const category = localStorage.getItem("category");
+console.log(category);
 
-let getProductData = async () => {
+let getProductDataByCategory = async () => {
     try {
         const res = await fetch(
-            `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/productController/viewallproducts`,
+            `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/productController/getproductbycategory/${category}/${sessionKey}`,
             {
                 method: "GET",
                 headers: {
@@ -72,44 +74,12 @@ let appendData = (data) => {
 // calling  api for vendor data after login
 window.addEventListener("load", async () => {
 
-    if(sessionKey == null ){
-        alert("You have not logged in please login first");
-        window.location.href = "./customer assets/customer login/login.html"
-    
-    }else {
-        const logoutbtn = document.querySelector(".logout");
-        logoutbtn.innerText = "logout"
-        const customerData = await getProductData();
-        appendData(customerData);
-    }
-    
+    const categoryData = await getProductDataByCategory();
+    appendData(categoryData);
+    console.log(categoryData);
 });
 
-// serch product by category
-const aTags = document.querySelectorAll('.productCatogary a');
 
-  for (let i = 0; i < aTags.length; i++) {
-    
-      aTags[i].addEventListener('click', function(event) {
-      event.preventDefault(); 
-      const clickedTag = event.target.textContent;
-      localStorage.setItem('category', clickedTag);
-
-      if(clickedTag == "Mens"){
-        window.location.href = "./customer assets/category/mans/mans.html";
-
-      }else if(clickedTag == "Womans"){
-        window.location.href = "./customer assets/category/womans/womans.html";
-
-      }else if(clickedTag == "Kids"){
-        window.location.href = "/customer assets/category/kids/kids.html";
-
-      }else {
-        window.location.href = "/customer assets/category/grocery/grocery.html";
-      }
-
-    });
-  }
 
 
 
