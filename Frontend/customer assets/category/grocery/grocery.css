@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 31em;
+    width: 36em;
 }
 
 #searchProduct {
@@ -89,7 +89,7 @@
     background-color: rgb(184, 228, 255);
 }
 
-.festivel--banner {
+.women--banner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +100,7 @@
   height: 100%;
   object-fit: cover;
 }
-.festivel--banner img{
+.women--banner img{
   margin-top: 1em;
 }
 
@@ -224,9 +224,6 @@
   width: 15em;
   aspect-ratio: 1;
 }
-.product--items__info:hover{
-  cursor: pointer;
-}
 
 .product--items__info p{
   font-weight: 500;
@@ -241,15 +238,13 @@
   color: rgb(255, 255, 255);
   border-radius: 10px;
   font-size: 13px;
-  padding: 0 8px;
-  margin-left: 5px;
+  padding: 0 5px;
 }
 
 .product--items__info img{
   width: 100%;
   height: 100%;
   object-fit:contain;
-  aspect-ratio: 1;
 }
 
 

@@ -1,3 +1,6 @@
+const sessionKey = localStorage.getItem("sessionKey");
+console.log(sessionKey);
+
 document.querySelector("form").addEventListener("submit", userSignup);
 
 async function userSignup(e) {
@@ -57,3 +60,8 @@ let userSignUpFun = async (obj) => {
   }
 
 };
+
+
+if(sessionKey !=null ){
+  window.location.href = "../dashboard/dashboard.html";
+}
