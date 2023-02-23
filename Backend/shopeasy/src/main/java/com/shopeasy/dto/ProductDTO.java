@@ -33,7 +33,7 @@ public class ProductDTO {
 	private Double discount;
 	
 	@Enumerated(EnumType.STRING)
-	private CategoryType category_type;
+	private CategoryType category;
 	
 	
 }

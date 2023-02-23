@@ -1,78 +1,273 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./style/index.css">
-    <title>Shopeasy</title>
-    <!-- gsap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"
-        integrity="sha256-lPE3wjN2a7ABWHbGz7+MKBJaykyzqCbU96BJWjio86U=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/583f110147.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./index.css">
+    <title>Shopeasy | Shop Now</title>
 </head>
-
 <body>
+    <header class="header">
+        <nav class="navBar">
+            <img id="logo" src="./assets/logo.jpg" alt="logo">
+            <!-- connecting business page -->
+            <a href="./vendor assets/business.html" class="addtocart">
+                <div class="icon">
+                    <!-- normal div -->
+                </div>
+                <span>Start Business Today</span>
+            </a>
 
-    <div class="wrapper">
+            <!-- adding login button -->
+            <a href="#" class="addtocart">
+                <div class="icon">
+                    <!-- normal div -->
+                </div>
+                <span class="logout">Start Shopping</span>
+            </a>
 
-        <div class="bg"></div>
-       <!-- Navbar section -->
-        <nav class="navbar">
-            <div class="logo">
-                <img src="./assets/logo.jpg" alt="">
-            </div>
-            <div class="menu-item">
-                <ul>
-                    <a href="">
-                        <li>Customer</li>
-                    </a>
-                    <a href="./vendor assets/vendor login/login.html">
-                        <li>Vendors</li>
-                    </a>
-                    <a href="">
-                        <li>Admin</li>
-                    </a>
-                </ul>
+            <div class="searchContainer">
+                <div class="navSearch">
+                    <form>
+                        <input type="text" id="searchProduct">
+                        <input type="button" value="Search" class="btn">
+                    </form>
+                </div>
+                
+                <a href="#" class="addtocart">
+                    <div class="icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="itemNumber">0</span>
+                    </div>
+                    <span>My Cart</span>
+                </a>
             </div>
         </nav>
-        <!-- Image section -->
-        <div class="img-wrapper">
-            <div class="img"></div>
-            <div class="block"></div>
+        <div class="productCatogary">
+            <a onclick="shouldwork()" href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Kid</a>
+            <a href="#">Grocury</a>
         </div>
-        <!-- Text section -->
-        <div class="text">
-            <h1>
-                <span class="text-bar">Sell your Onl<label>ine  Product</label></span>
-            </h1>
-            <p>
-                <span class="text-bar">in easy 3 steps, yes</span>
-            </p>
-            
-            <div class="btn-container">
-                <a href="./vendor assets/vendor login/login.html">
-                    <button class="btn">Shell Product</button>
+    </header>
+
+    <main>
+        <section class="product--slider">
+            <div class="slider">
+                <div class="slide">
+                  <div class="testimonial">
+                    <img src="./assets/Landing-page/sliding-img/1.jpg" alt="product 1">
+                  </div>
+                </div>
+        
+                <div class="slide">
+                  <div class="testimonial">
+                    <img src="./assets/Landing-page/sliding-img/2.jpg" alt="product 2">
+                  </div>
+                </div>
+        
+                <div class="slide">
+                  <div class="testimonial">
+                    <img src="./assets/Landing-page/sliding-img/3.jpg" alt="product 3">
+                  </div>
+                </div>
+
+                <div class="slide">
+                  <div class="testimonial">
+                    <img src="./assets/Landing-page/sliding-img/4.jpg" alt="product 4">
+                  </div>
+                </div>
+
+                <div class="slide">
+                  <div class="testimonial">
+                    <img src="./assets/Landing-page/sliding-img/5.jpg" alt="product 5">
+                  </div>
+                </div>
+        
+                <button class="slider__btn slider__btn--left">&larr;</button>
+                <button class="slider__btn slider__btn--right">&rarr;</button>
+                <div class="dots"></div>
+            </div>
+
+            <div class="festivel--banner">
+                <h1>Festivel Special Offer</h1>
+                <img src="./assets/Landing-page/sliding-img/5.jpg" alt="product 6">
+            </div>
+
+        </section>
+
+        <section id="section--two">
+            <h1 style="text-align: center;">Our Best Offers For You</h1>
+            <div class="product--items__container">
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/1.jpg" alt="">
+                    <p>Product Name | Info</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹1000</span>
+                    <span class="offer">20%</span>
                 </a>
-                <a href="./customer assets/signup.html">
-                    <button class="btn">Start Shopping</button>
+
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/2.webp" alt="">
+                    <p>Product Name | Info</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹1000</span>
+                    <span class="offer">20%</span>
+                </a>
+
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/3.jpg" alt="">
+                    <p>Product Name | Info</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹800</span>
+                    <span class="offer">20%</span>
+                </a>
+
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/4.webp" alt="">
+                    <p>Women's Western Showmanship</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹1100</span>
+                    <span class="offer">20%</span>
+                </a>
+
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/5.jpg" alt="">
+                    <p>Show Coat with two front pocket</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹1100</span>
+                    <span class="offer">20%</span>
+                </a>
+
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/6.webp" alt="">
+                    <p>Yggdrasil Tshirt - Norse Viking Clothing</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹100</span>
+                    <span class="offer">20%</span>
+                </a>
+
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/7.jpg" alt="">
+                    <p>Best Selling Laptop - Asus</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹100</span>
+                    <span class="offer">20%</span>
+                </a>
+                
+                <a href="#" class="product--items__info">
+                    <img src="./assets/Landing-page/product images/8.jpg" alt="">
+                    <p>Yggdrasil Tshirt - Norse Viking Clothing</p>
+                    <p class="price2">Price: ₹80</p>
+                    <span class="price1">₹100</span>
+                    <span class="offer">20%</span>
                 </a>
             </div>
-        </div>
+        </section>
 
-    </div>
+        <footer id="footer">
+            <div id="footer-div">
+              <div class="about-blog">
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Kids</a>
+                <a href="#">Grocury</a>
+              </div>
+              <div class="about-blog">
+                <a href="#">About</a>
+                <a href="#">Privacy Poliy</a>
+                <a href="#">Affiliate Programe</a>
+                <a href="#">Term And Condition</a>
+              </div>
+              <div id="social-icon">
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-instagram"></a>
+              </div>
+            </div>
+        </footer>
+    </main>
+
+<script src="./index.js"></script>
+    <script>
+    // Slider ==================================================================================
+        const slides = document.querySelectorAll('.slide');
+        const btnLeft = document.querySelector('.slider__btn--left');
+        const btnRight = document.querySelector('.slider__btn--right');
+        const dotContainer = document.querySelector('.dots');
+        let curSlide = 0;
+        let maxSlide = slides.length;
+
+        const createDots = () => {
+        slides.forEach((s, i) => {
+            dotContainer.insertAdjacentHTML('beforeend', `<button class="dots__dot" data-slide="${i}"></button>`)
+        })
+        }
+        createDots();
+
+        const activeteDots = (slide) => {
+        document.querySelectorAll(".dots__dot").forEach((dot) => {
+            dot.classList.remove('dots__dot--active')
+        })
+        document
+            .querySelector(`.dots__dot[data-slide="${slide}"]`)
+            .classList.add(`dots__dot--active`)
+        }
+        activeteDots(0);
 
 
-    <script src="./script/inex.js"></script>
+        const gotoSlides = (curSlide) => {
+        slides.forEach((e, i) => {
+            e.style.transform = `translateX(${100 * (i - curSlide)}%)`;
+        })
+        }
+        gotoSlides(0);
+
+        // Go to Next Slide
+        const nextSlide = () => {
+        if (curSlide === maxSlide - 1) {
+            curSlide = 0;
+        } else {
+            curSlide++;
+        }
+        gotoSlides(curSlide);
+        activeteDots(curSlide);
+        }
+
+        // Go to Previous Slide
+        const preSlide = function () {
+        if (curSlide === 0) {
+            curSlide = maxSlide - 1;
+        } else {
+            curSlide--;
+        }
+        gotoSlides(curSlide);
+        activeteDots(curSlide);
+        }
+
+        btnRight.addEventListener('click', nextSlide);
+        btnLeft.addEventListener('click', preSlide);
+
+        document.addEventListener('keydown', function (e) {
+        // if (e.key === 'ArrowLeft') preSlide();
+        // if (e.key === 'ArrowRight') nextSlide();
+        // also sortcurcuiting
+        e.key === 'ArrowLeft' && preSlide();
+        e.key === 'ArrowRight' && nextSlide();
+        })
+
+
+
+        dotContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('dots__dot')) {
+            const { slide } = e.target.dataset;
+            gotoSlides(slide);
+            activeteDots(slide);
+        }
+        })
+    </script>
 </body>
-
 </html>
-
-
-
-
-
-   

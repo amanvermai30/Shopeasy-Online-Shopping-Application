@@ -10,33 +10,35 @@ function userSignup(e) {
 
   let password = document.getElementById("password").value;
 
-  let country = document.getElementById("country").value;
+  let phone = document.getElementById("phone").value;
 
-  let state = document.getElementById("state").value;
+//   next obj for address
+
+  let country = document.getElementById("country").value;
 
   let city = document.getElementById("city").value;
 
+  let streetNo = document.getElementById("streetNo").value;
+
+  let buildingName = document.getElementById("buildingName").value;
+
   let pincode = document.getElementById("pincode").value;
 
-  let phone = document.getElementById("phone").value;
-
-  let profileImage = document.getElementById("image").value;
-
-  const vendor = {
-    venderName: name,
-    personalInfo: {
-      phone: phone,
-      email: email,
-      password: password,
+  const customer = {
+    customerName: name,
+    phone:phone,
+    email:email,
+    password:password,
+    address: {
       country: country,
-      imageUrl: profileImage,
-      state: state,
       city: city,
+      streetNo:streetNo,
+      buildingName:buildingName,
       pincode: pincode,
     },
   };
 
-  userSignUpFun(vendor);
+  userSignUpFun(customer);
 }
 
 // now I am sending data
@@ -44,7 +46,7 @@ function userSignup(e) {
 let userSignUpFun = async (obj) => {
 
   try {
-    let res = await fetch("http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/vendor", {
+    let res = await fetch("http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//customerController/customer", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
@@ -61,7 +63,7 @@ let userSignUpFun = async (obj) => {
       let d = JSON.stringify(data);
 
       console.log(d);
-      alert("Vendor created successfuly");
+      alert("customer created successfuly");
       
     } else {
       let data = await res.json();
@@ -75,7 +77,7 @@ let userSignUpFun = async (obj) => {
 
   } catch (error) {
     console.log(error);
-    alert("Vendor created successfuly");
-    window.location.href = "../vendor login/login.html";
+    alert("customer created successfuly");
+    window.location.href = "../customer login/login.html";
   }
 };

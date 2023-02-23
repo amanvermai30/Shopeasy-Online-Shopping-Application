@@ -64,7 +64,7 @@ public class Product {
 	private Double discount; 
 	
 	@Enumerated(EnumType.STRING)
-	private CategoryType category_type;
+	private CategoryType category;
 
 	@JsonIgnore
 	@ManyToMany

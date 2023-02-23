@@ -29,6 +29,11 @@ public class FileController {
 	@Autowired
 	private FileService fileService;
 	
+	@GetMapping("/")
+	public String sayWelcome() {
+		return "Welcome to shopeasy";
+	}
+	
 	@Value("${project.image}")
 	private String path;
 	

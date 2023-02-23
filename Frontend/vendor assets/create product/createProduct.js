@@ -30,7 +30,7 @@ function createProduct(e) {
     marketPrice: productMarketPriceDouble,
     productDescription: productDescription,
     discount: productDiscountDouble,
-    category_type: productCategory,
+    category: productCategory,
   };
 
   console.log(listData);
@@ -49,7 +49,7 @@ function createProduct(e) {
 let sendProductData = async (obj) => {
   try {
     const res = await fetch(
-      `http://localhost:8888/vendorController/addproduct/${sessionKey}`,
+      `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/addproduct/${sessionKey}`,
       {
         method: "POST",
         body: JSON.stringify(obj),

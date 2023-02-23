@@ -3,7 +3,6 @@ package com.shopeasy.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.security.auth.login.LoginException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,25 +63,7 @@ public class CustomerServiceImpl implements CustomerService{
 	    return output;
 
 	}
-
-	@Override
-	public List<Product> viewAllProduct(String key) throws ProductException, LoginException, CustomerException {
-		// TODO Auto-generated method stub
-		
-		CurrentSession session = sessionDao.findByUuid(key);
-		
-		if(session == null ) {
-			throw new LoginException("Login firt to see all product on shopeasy");
-		}
-		
-        List<Product> products = productDao.findAll();
-		
-		if(products.isEmpty()) {
-			throw new ProductException("Product is currently not available ");
-		}
-		return products;
-
-	}
+	
 
 	@Override
 	public Cart addProductsToCart(Integer productId, Integer customerId, Integer quantity)
@@ -113,7 +94,7 @@ public class CustomerServiceImpl implements CustomerService{
 	        
 	       
             ProductDTO productDto = new ProductDTO();
-            productDto.setCategory_type(product.getCategory_type());
+            productDto.setCategory(product.getCategory());
             productDto.setDiscount(product.getDiscount());
             productDto.setPicture(product.getPicture());
             productDto.setMarketPrice(product.getMarketPrice());

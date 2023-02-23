@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopeasy.enums.PaymentMethod;
 import com.shopeasy.enums.PaymentStatus;
 import com.shopeasy.exception.CustomerException;
 import com.shopeasy.exception.OrderClassException;
@@ -35,9 +36,16 @@ public class PaymentServiceImpl implements PaymentService{
 			throws PaymentException, CustomerException, OrderClassException {
 		// TODO Auto-generated method stub
 		
+		Payment outPut = null;
 		Optional<OrderClass> orderOpt = orderDao.findById(orderId);
 		OrderClass order = orderOpt.get();
-		Payment outPut = null;
+		
+		Optional<Payment> paymentOpt = paymentDao.findById(payment.getPaymentId());
+		Payment alreadyPayment = paymentOpt.get();
+		
+		if(alreadyPayment.getOrders().getOrderId() == orderId) {
+			throw new PaymentException("Your payment is already done ");
+		}
 		
 		if(order == null ) {
 			throw new OrderClassException("Order not found ");
@@ -46,11 +54,21 @@ public class PaymentServiceImpl implements PaymentService{
 		// I am taking this cart so that after payment I can empty customer cart -> there should not any product;
 		Cart cart= order.getCustomer().getCart();
 		
+		
+//		I need to update my product table also 
+		
 		payment.setPaymentCreatedAtDate(LocalDate.now());
 		payment.setPaymentAmount(order.getTotalAmount());
 		payment.setOrders(order);
-		payment.setPaymentStatus(PaymentStatus.SUCCESSFULLY);
-		orderDao.save(order);
+		
+//		checking if customer is giving payment trough debit cart  and credit cart payment status will be successfully
+		if(payment.getMethod().equals(PaymentMethod.CASH_ON_DELIVERY)) {
+			payment.setPaymentStatus(PaymentStatus.UNSUCCESSFULLY);
+			
+		}else {
+			payment.setPaymentStatus(PaymentStatus.SUCCESSFULLY);
+		}
+//		orderDao.save(order);
 		outPut  = paymentDao.save(payment);
 		cartDao.delete(cart);
 		

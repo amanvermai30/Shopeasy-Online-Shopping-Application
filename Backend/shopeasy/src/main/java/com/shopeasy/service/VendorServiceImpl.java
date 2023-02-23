@@ -26,35 +26,35 @@ import com.shopeasy.repository.SessionDao;
 import com.shopeasy.repository.VendorDao;
 
 @Service
-public class VendorServiceImpl implements VendorService{
-	
+public class VendorServiceImpl implements VendorService {
+
 	@Autowired
 	VendorDao vendorDao;
-	
+
 	@Autowired
 	PersonalInfoDao personalInfoDao;
-	
+
 	@Autowired
 	SessionDao sessionDao;
-	
+
 	@Autowired
 	ProductDao productDao;
 
 	@Override
-	public String createVendorAccount(Vendor vendor) throws VendorException, PersonalInfoException,IOException {
+	public String createVendorAccount(Vendor vendor) throws VendorException, PersonalInfoException, IOException {
 		// TODO Auto-generated method stub
-		
-        String outPut = "Customer Account is Not created";
-        
+
+		String outPut = "Customer Account is Not created";
+
 		Vendor ven = vendorDao.save(vendor);
-		if(ven != null ) {
-			
+		if (ven != null) {
+
 			PersonalInfo personalInfo = ven.getPersonalInfo();
 			personalInfo.setVendor(ven);
 			personalInfoDao.save(personalInfo);
 			outPut = "Vendor Account is created Successfully";
-			
-		}else {
+
+		} else {
 			throw new PersonalInfoException("Error while creating vendor account: ");
 		}
 
@@ -64,41 +64,40 @@ public class VendorServiceImpl implements VendorService{
 	@Override
 	public String addProduct(Product product, String key) throws ProductException, LoginException, VendorException {
 		// TODO Auto-generated method stub
-		
+
 		String outPut = "Product is Not added";
 		CurrentSession session = sessionDao.findByUuid(key);
-		
-		if(session == null ) {
+
+		if (session == null) {
 			throw new LoginException("Vendor Not logged in ");
-			
-		}else {
-			
-			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
-			    throw new LoginException("you are not authorized");	
-			    
-			} else if(product.getCategory_type() == null || 
-			          !product.getCategory_type().equals(CategoryType.MENS)&&
-			          !product.getCategory_type().equals(CategoryType.KIDS) &&
-			          !product.getCategory_type().equals(CategoryType.WOMANS) &&
-			          !product.getCategory_type().equals(CategoryType.ELECTRONICS)) {
-			      
-				throw new ProductException("Sorry Vendor currently we are having only four type of category mens, womans, kids, electronics");
-				
+
+		} else {
+
+			if (session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)) {
+				throw new LoginException("you are not authorized");
+
+			} else if (product.getCategory() == null || !product.getCategory().equals(CategoryType.MENS)
+					&& !product.getCategory().equals(CategoryType.KIDS)
+					&& !product.getCategory().equals(CategoryType.WOMANS)
+					&& !product.getCategory().equals(CategoryType.ELECTRONICS)) {
+
+				throw new ProductException(
+						"Sorry Vendor currently we are having only four type of category mens, womans, kids, electronics");
+
 			}
-			
+
 			Optional<Vendor> vendorOpt = vendorDao.findById(session.getId());
 			Vendor vendor = vendorOpt.get();
-			
-	    
-			double discountAmount = product.getMarketPrice()*(product.getDiscount()/100.0);
-			double finalPrice = product.getMarketPrice()-discountAmount;
+
+			double discountAmount = product.getMarketPrice() * (product.getDiscount() / 100.0);
+			double finalPrice = product.getMarketPrice() - discountAmount;
 			product.setAfterDiscountPrice(finalPrice);
 			product.getVendors().add(vendor);
 			vendor.getProducts().add(product);
 			productDao.save(product);
 //			vendorDao.save(vendor);
 			outPut = "Your product Listed Successufully";
-			
+
 		}
 		return outPut;
 	}
@@ -106,30 +105,29 @@ public class VendorServiceImpl implements VendorService{
 	@Override
 	public String updateProduct(Product product, String key) throws ProductException, LoginException, VendorException {
 		// TODO Auto-generated method stub
-		
+
 		String outPut = "Product is Not added";
 		CurrentSession session = sessionDao.findByUuid(key);
-		if(session == null ) {
+		if (session == null) {
 			throw new LoginException("Vendor Not logged in ");
-			
-		}else {
-			
-			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
-			    throw new LoginException("you are not authorized");	
-			    
-			}else {
-				
+
+		} else {
+
+			if (session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)) {
+				throw new LoginException("you are not authorized");
+
+			} else {
+
 				Optional<Product> pro = productDao.findById(product.getProductId());
-				
-				if(pro.isPresent()) {
+
+				if (pro.isPresent()) {
 					productDao.save(product);
 					outPut = "Product is updated successfully";
-					
-				}else {
-					throw new ProductException("Product not found with this Id"+product.getProductId());
+
+				} else {
+					throw new ProductException("Product not found with this Id" + product.getProductId());
 				}
-				
-				
+
 			}
 		}
 		return outPut;
@@ -138,70 +136,69 @@ public class VendorServiceImpl implements VendorService{
 	@Override
 	public List<Product> viewAllProduct() throws ProductException, LoginException, VendorException {
 		// TODO Auto-generated method stub
-		
+
 		List<Product> products = productDao.findAll();
-		
-		if(products.isEmpty()) {
+
+		if (products.isEmpty()) {
 			throw new ProductException("Product is currently not available ");
 		}
 		return products;
-		
+
 	}
 
 	@Override
 	public String removeProduct(Integer productId, String key)
 			throws ProductException, LoginException, VendorException {
 		// TODO Auto-generated method stub
-		
+
 		String outPut = "Product is Not deleted";
 		CurrentSession session = sessionDao.findByUuid(key);
-		if(session == null ) {
+		if (session == null) {
 			throw new LoginException("Vendor Not logged in ");
-			
-		}else {
-			
-			if(session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)){
-			    throw new LoginException("you are not authorized");	
-			    
-			}else {
-				
+
+		} else {
+
+			if (session.getUser_type().equals(UserType.CUSTOMER) || session.getUser_type().equals(UserType.ADMIN)) {
+				throw new LoginException("you are not authorized");
+
+			} else {
+
 				Optional<Product> pro = productDao.findById(productId);
-				
-				if(pro.isPresent()) {
+
+				if (pro.isPresent()) {
 					productDao.delete(pro.get());
 					outPut = "Product is deleted successfully";
-					
-				}else {
-					throw new ProductException("Product not found with this Id"+productId);
+
+				} else {
+					throw new ProductException("Product not found with this Id" + productId);
 				}
-				
-				
+
 			}
 		}
 		return outPut;
 	}
 
 	@Override
-	public Product viewProductById(Integer productId)
-			throws ProductException, LoginException, VendorException {
+	public Product viewProductById(Integer productId) throws ProductException, LoginException, VendorException {
 		// TODO Auto-generated method stub
-		
-		return productDao.findById(productId).orElseThrow(()-> new ProductException("Product not found with this Id"+productId));
+
+		return productDao.findById(productId)
+				.orElseThrow(() -> new ProductException("Product not found with this Id" + productId));
 	}
 
 	@Override
-	public Vendor getSingalVendor(String key) throws LoginException{
+	public Vendor getSingalVendor(String key) throws LoginException {
 		// TODO Auto-generated method stub
-		
-		CurrentSession session  = sessionDao.findByUuid(key);
-		
-		if(session == null ) {
+
+		CurrentSession session = sessionDao.findByUuid(key);
+
+		if (session == null) {
 			throw new LoginException("Vendor Not logged In");
 		}
-		Optional<Vendor>  venOpt = vendorDao.findById(session.getId());
+		Optional<Vendor> venOpt = vendorDao.findById(session.getId());
 		Vendor vendor = venOpt.get();
-		
+
 		return vendor;
 	}
-	
+
 }

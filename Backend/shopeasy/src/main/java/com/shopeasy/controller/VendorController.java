@@ -36,6 +36,11 @@ public class VendorController {
 	@Autowired
 	private VendorService vendorService;
 	
+	@GetMapping("/")
+	public String sayWelcome() {
+		return "Welcome to shopeasy";
+	}
+	
 	
 	@PostMapping("/vendor")
 	public ResponseEntity<String> createVendorAccount(@RequestBody Vendor vendor) throws VendorException,PersonalInfoException, IOException{

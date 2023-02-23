@@ -48,6 +48,11 @@ public class Address {
 	@NotBlank(message =  "streetNo cannot set as blank") 
 	private String buildingName;
 	
+	@NotNull(message = "state cannot set as null")
+    @NotEmpty(message =  "state cannot set as empty")
+	@NotBlank(message =  "state cannot set as blank") 
+	private String state;
+	
 	@NotNull(message = "pincode cannot set as null")
     @NotEmpty(message =  "pincode name cannot set as empty")
 	@NotBlank(message =  "pincode name cannot set as blank")
