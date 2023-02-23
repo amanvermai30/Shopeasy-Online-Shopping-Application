@@ -1,6 +1,6 @@
-document.querySelector("form").addEventListener("submit", userSignup);
+document.querySelector("form").addEventListener("submit", userLogin);
 
-async function userSignup(e) {
+async function userLogin(e) {
   e.preventDefault();
   console.log("working");
 
@@ -10,15 +10,15 @@ async function userSignup(e) {
   const loginData = {
     email: email,
     password: password,
-    user_type: "VENDOR",
+    user_type: "CUSTOMER",
   };
 
   try {
     const sessionKey = await userSignUpFun(loginData);
     localStorage.setItem('sessionKey', sessionKey);
     console.log(sessionKey);
-    alert("Vendor login successfully");
-    window.location.href = "../dashboard/dashboard.html";
+    alert("Start your shopping now");
+    window.location.href = "/index.html";
   } catch (error) {
     console.error(error);
     alert("Error: " + error.message);

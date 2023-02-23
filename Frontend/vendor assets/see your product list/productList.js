@@ -9,7 +9,7 @@ let allProducts = [];
 
 async function findAllProduct() {
   try {
-    let res = await fetch(`http://localhost:8888/vendorController/viewallproducts`, {
+    let res = await fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/viewallproducts`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function appendData(data) {
     discription.innerText = el.productDescription;
 
     let category_type = document.createElement("td");
-    category_type.innerText = el.category_type;
+    category_type.innerText = el.category;
 
     // in tr appending all td then appending to table
     tr.append(prid, prName, marketPrice, quantity, discount, discription, category_type, AfterDiscountPrice);
