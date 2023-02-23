@@ -5,6 +5,7 @@ import javax.security.auth.login.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,11 @@ public class ShipperController {
 
 	@Autowired
 	private ShipperService shipperService;
+	
+	@GetMapping("/")
+	public String sayWelcome() {
+		return "Welcome to shopeasy";
+	}
 	
 	@PostMapping("/assignordertoshipper/{orderId}/{paymentId}/{key}")
 	public ResponseEntity<OrderClass> createVendorAccount(@RequestBody Shipper shipper,
