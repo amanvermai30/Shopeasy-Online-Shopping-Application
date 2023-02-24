@@ -18,6 +18,8 @@ function userSignup(e) {
 
   let city = document.getElementById("city").value;
 
+  let state = document.getElementById("state").value;
+
   let streetNo = document.getElementById("streetNo").value;
 
   let buildingName = document.getElementById("buildingName").value;
@@ -32,6 +34,7 @@ function userSignup(e) {
     address: {
       country: country,
       city: city,
+      state:state,
       streetNo:streetNo,
       buildingName:buildingName,
       pincode: pincode,

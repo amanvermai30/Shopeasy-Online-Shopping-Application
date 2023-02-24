@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./singalProduct.css">
+  <link rel="icon" type="" sizes="32x32" href="">
+  <title>Frontend Mentor | E-commerce product page</title>
+</head>
+
+<body>
+
+  <header>
+    <nav id="navBar">
+      <div id="leftNav">
+        <img id="logo" src="/assets/logo.jpg" alt="logo" style="width: 15em;">
+        <ul>
+          <li><a class="down-line" href="#">Men</a></li>
+          <li><a class="down-line" href="#">Women</a></li>
+          <li><a class="down-line" href="#">Kids</a></li>
+          <li><a class="down-line" href="#">Grocery</a></li>
+        </ul>
+      </div>
+      <div id="rightNav">
+        <img class="cartLogo" src="./images/icon-cart.svg" alt="icon-cart">
+        <div id="cartLogo-info"></div>
+        <!-- <img class="avatarLogo" src="images/image-avatar.png" alt="image-avatar"> -->
+      </div>
+    </nav>
+
+    <div id="cartModal" class="cartModal cartHidden">
+      <p>Cart</p>
+      <div id="modalData" class="modalData">
+
+      </div>
+    </div>
+
+
+
+  </header>
+
+  <main>
+    <div id="main-container">
+      <div id="img-container">
+
+        <div id="big-img">
+          <img id="bigImg" src="/assets/Landing-page/product images/1.jpg" alt="image-product-1">
+        </div>
+
+        <!-- <div id="small-img">
+          <div class="small-img-div">
+            <img class="thumbnail" src="images/image-product-1-thumbnail.jpg" alt="img">
+          </div>
+
+          <div class="small-img-div">
+            <img class="thumbnail" src="images/image-product-4-thumbnail.jpg" alt="img">
+          </div>
+
+          <div class="small-img-div">
+            <img class="thumbnail" src="images/image-product-3-thumbnail.jpg" alt="img">
+          </div>
+
+          <div class="small-img-div">
+            <img class="thumbnail" src="images/image-product-2-thumbnail.jpg" alt="img">
+          </div>
+        </div> -->
+
+      </div>
+
+      <div id="product-cart">
+        <div id="product-detail">
+          <p id="compony">SNEAKER COMPONY</p>
+          <h1 id="heading">Fall Limited Edition Sneaker</h1>
+          <p id="productInfo">These low-profile sneakers are your perfect casual wear companion. Featuring a
+            durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+        </div>
+
+        <div id="price-div">
+          <h1 id="price">$125.00</h1>
+          <label for="off">50%</label>
+          <p id="discount">$250.00</p>
+        </div>
+
+        <div id="btn-div">
+          <div id="incDec">
+            <img id="minus" src="./images/icon-minus.svg" alt="minus">
+            <p id="value">0</p>
+            <img id="plus" src="./images/icon-plus.svg" alt="plus">
+          </div>
+          <button id="addToCart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="carousal-grandFather hideGrandFather">
+    <div id="carousal-main-container">
+      <img id="close" src="./images/icon-close.svg" alt="icon-close">
+      <div class="carousel">
+        <img class="carousel__button left isHidden" src="./images/icon-previous.svg">
+        <div class="carousel__track-container">
+          <ul class="carousel__track">
+            <li class="carousel__slide current-slide">
+              <img class="carousel-img" src="images/image-product-1.jpg">
+            </li>
+            <li class="carousel__slide" style="left: 580px;">
+              <img class="carousel-img" src="images/image-product-2.jpg">
+            </li>
+            <li class="carousel__slide" style="left: 1160px;">
+              <img class="carousel-img" src="images/image-product-3.jpg">
+            </li>
+            <li class="carousel__slide" style="left: 1740px;">
+              <img class="carousel-img" src="images/image-product-4.jpg">
+            </li>
+          </ul>
+        </div>
+        <img class="carousel__button right" src="./images/icon-next.svg">
+
+        <div class="carousel__nav">
+          <img class="carousel__indicator current-slide" src="images/image-product-1-thumbnail.jpg">
+          <img class="carousel__indicator" src="images/image-product-2-thumbnail.jpg">
+          <img class="carousel__indicator" src="images/image-product-3-thumbnail.jpg">
+          <img class="carousel__indicator" src="images/image-product-4-thumbnail.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="burger-container" class="burger-container hamIsHide">
+    <div id="burger">
+      <img id="close-1" src="./images/icon-close.svg" alt="close">
+      <ul>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+    
+
+
+  <script src="./singalProduct.js"></script>
+</body>
+
+</html>
