@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/583f110147.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./cart.css" />
+    <title>Shopeasy | Shop Now</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navBar">
+        <a href="/index.html">
+            <img id="logo" src="/assets/logo.jpg" alt="logo" />
+        </a>
+
+        <div class="searchContainer">
+          <div class="navSearch">
+            <form>
+              <input type="text" id="searchProduct" />
+              <input type="button" value="Search" class="btn" />
+            </form>
+          </div>
+
+          <a href="#" class="addtocart">
+            <div class="icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="itemNumber">0</span>
+            </div>
+            <span>My Cart</span>
+          </a>
+        </div>
+      </nav>
+      <div class="productCatogary">
+        <a href="#">Mens</a>
+        <a href="#">Womans</a>
+        <a href="#">Kids</a>
+        <a href="#">Grocury</a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="list__of--orders">
+            <h1>Your Basket</h1>
+
+            <table id="customers">
+              <tr>
+                <th>number_of_product</th>
+                <th>total_price</th>
+              </tr>
+              <tr>
+                <td>Laughing Bacchus Winecellars</td>
+                <td>Yoshi Tannamuri</td>
+              </tr>
+              <tr>
+                <td>Paris spécialités</td>
+                <td>Marie Bertrand</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="checkout__container">
+          <div class="item"></div>
+          <div class="item">
+            <form style="text-align: center">
+              <label for="totalprice">Your Total</label>
+              <input id="totalprice" type="text" placeholder="total" disabled />
+              <input type="button" value="Checkout" class="btn" />
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer id="footer">
+        <div id="footer-div">
+          <div class="about-blog">
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Kids</a>
+            <a href="#">Grocury</a>
+          </div>
+          <div class="about-blog">
+            <a href="#">About</a>
+            <a href="#">Privacy Poliy</a>
+            <a href="#">Affiliate Programe</a>
+            <a href="#">Term And Condition</a>
+          </div>
+          <div id="social-icon">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+          </div>
+        </div>
+      </footer>
+    </main>
+    
+    <script src="./cart.js"></script>
+  </body>
+</html>

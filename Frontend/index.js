@@ -1,6 +1,6 @@
 //  get vendor profile- get request
 
-const sessionKey = localStorage.getItem("sessionKey");
+const sessionKey = localStorage.getItem("sessionkey");
 console.log(sessionKey);
 
 let getProductData = async () => {

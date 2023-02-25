@@ -1,9 +1,8 @@
 // getting product id , session key from localstorage
 
-const sessionKey = localStorage.getItem("sessionKey");
+const sessionKey = localStorage.getItem("sessionkey");
 const productId = localStorage.getItem("productId");
-console.log(productId);
-console.log(sessionKey);
+const userId = localStorage.getItem("userId");
 
 let getSingalProductData = async () => {
     try {
@@ -63,7 +62,6 @@ let appendData = (data) => {
     h2.innerText = "₹" + data.afterDiscountPrice
     label.innerText = data.discount + "%";
     p2.innerText = "₹" + data.marketPrice + "  Market Price";
-    productQuantity = data.quantity
 
     // now I will append all tags
     imgContainer.append(img);
@@ -81,6 +79,7 @@ window.addEventListener("load", async () => {
 
 
 
+let goodsValue = 0;
 function checkQuantity(data) {
 
     let minus = document.getElementById("minus");
@@ -90,7 +89,6 @@ function checkQuantity(data) {
     const productQuantity = data.quantity;
 
     // function for change the value of product
-    let goodsValue = 0;
     minus.onclick = function () {
         if (goodsValue <= 0) {
             emptyItems();
@@ -98,23 +96,69 @@ function checkQuantity(data) {
             goodsValue--;
             value.innerText = goodsValue;
             itemNumberInCart.innerText = goodsValue;
-            cardItems();
-            cartinfo();
         }
     };
     plus.onclick = function () {
 
-        if(goodsValue >= productQuantity ){
-            alert("Sorry customer currently product available quantity is  "+productQuantity)
-        }else {
+        if (goodsValue >= productQuantity) {
+            alert("Sorry customer currently product available quantity is  " + productQuantity)
+        } else {
             goodsValue++;
             value.innerText = goodsValue;
             itemNumberInCart.innerText = goodsValue;
-        }  
-        
+        }
+
     };
 
 }
 checkQuantity();
+
+
+
+
+// calling add to cart api here
+
+async function addToCartData() {
+
+    try {
+        let res = await fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//customerController/addtocart/${productId}/${userId}/${goodsValue}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (res.ok) {
+            console.log("sucesss");
+            let data = await res.json();
+            return data;
+
+        } else {
+            let data = await res.json();
+            let error = JSON.stringify(data);
+
+            let msg = JSON.parse(error);
+
+            console.log(msg);
+            alert(msg.message);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+async function addToCartFun() {
+    try {
+        const cart = await addToCartData();
+        console.log(cart);
+        alert("product added to cart successfuly");
+        window.location.href = "/customer assets/cart/cart.html";
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 

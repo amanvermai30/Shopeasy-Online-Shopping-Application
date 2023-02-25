@@ -1,7 +1,7 @@
 
 
 // taking data from local storage
-const sessionKey = localStorage.getItem("sessionKey");
+const sessionKey = localStorage.getItem("sessionkey");
 const category = localStorage.getItem("category");
 console.log(category);
 
