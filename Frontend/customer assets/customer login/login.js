@@ -14,11 +14,13 @@ async function userLogin(e) {
   };
 
   try {
-    const sessionKey = await userSignUpFun(loginData);
-    localStorage.setItem('sessionKey', sessionKey);
-    console.log(sessionKey);
+    const data = await userSignUpFun(loginData);
+    localStorage.setItem("sessionkey",data.sessionkey);
+    localStorage.setItem("userId",data.userId);
+    console.log(data.sessionkey);
     alert("Start your shopping now");
     window.location.href = "/index.html";
+
   } catch (error) {
     console.error(error);
     alert("Error: " + error.message);
@@ -40,7 +42,7 @@ let userSignUpFun = async (obj) => {
     if (res.ok) {
       console.log("success");
       const data = await res.json();
-      return data.sessionKey;
+      return data;
 
     } else {
 
