@@ -62,6 +62,12 @@ let appendData = (data) => {
     span1.textContent = el.marketPrice;
     span2.textContent = el.discount+"%";
 
+    // by clicking any product it will redirect to singal product page 
+    atag.addEventListener("click", () => {
+      const productId = el.productId;
+      localStorage.setItem('productId', productId);
+      window.location.href = "./customer assets/singal product/singalProduct.html";
+    });
     // now I will append all tags 
     atag.append(img, p1, p2, span1, span2);
     mainContainer.append(atag);
