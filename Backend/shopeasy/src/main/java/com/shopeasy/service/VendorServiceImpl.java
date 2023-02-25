@@ -79,7 +79,7 @@ public class VendorServiceImpl implements VendorService {
 			} else if (product.getCategory() == null || !product.getCategory().equals(CategoryType.MENS)
 					&& !product.getCategory().equals(CategoryType.KIDS)
 					&& !product.getCategory().equals(CategoryType.WOMANS)
-					&& !product.getCategory().equals(CategoryType.ELECTRONICS)) {
+					&& !product.getCategory().equals(CategoryType.GROCERY)) {
 
 				throw new ProductException(
 						"Sorry Vendor currently we are having only four type of category mens, womans, kids, electronics");
