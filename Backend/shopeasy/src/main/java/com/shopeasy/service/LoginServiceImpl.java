@@ -45,13 +45,14 @@ public class LoginServiceImpl implements LoginService{
 		if( credential.getUser_type() != null && UserType.CUSTOMER.equals(credential.getUser_type())) {
 			
 			Customer existingCustomer = customerDao.findByEmail(credential.getEmail());
+			
 			if(existingCustomer == null ) {
 				
 				throw new LoginException("Please Enter a valid CREDENTIALS");
 				
 			}else {
 				
-				
+				Integer userId = existingCustomer.getCustomerId();
 				Optional<CurrentSession> validCustomerSessionOpt = sessionDao.findById(existingCustomer.getCustomerId());
 				if(validCustomerSessionOpt.isPresent()) {
 					
@@ -63,7 +64,7 @@ public class LoginServiceImpl implements LoginService{
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(existingCustomer.getCustomerId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
-					return new LoginResponse("Customer Logged in Successfully Welcome to shopeasy ",key);
+					return new LoginResponse("Customer Logged in Successfully Welcome to shopeasy ",key,userId);
 					
 				}else {
 					throw new LoginException("Wrong Password");
@@ -82,7 +83,7 @@ public class LoginServiceImpl implements LoginService{
 				
 			}else {
 				
-				
+				Integer userId = existingVendor.getVendorId();
 				Optional<CurrentSession> validVendorSessionOpt = sessionDao.findById(existingVendor.getVendorId());
 				if(validVendorSessionOpt.isPresent()) {
 					
@@ -94,7 +95,7 @@ public class LoginServiceImpl implements LoginService{
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(existingVendor.getVendorId(),key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
-					return new LoginResponse("Vendor Logged in Successfully Welcome to shopeasy ",key);
+					return new LoginResponse("Vendor Logged in Successfully Welcome to shopeasy ",key,userId);
 					
 				}else {
 					throw new LoginException("Wrong Password");
@@ -124,7 +125,7 @@ public class LoginServiceImpl implements LoginService{
 					String key = RandomString.make(6);
 					currentSession = new CurrentSession(0,key,LocalDateTime.now(),credential.getUser_type());
 					sessionDao.save(currentSession);
-					return new LoginResponse("Hello Admin Welcome again to shopeasy ",key);
+					return new LoginResponse("Hello Admin Welcome again to shopeasy ",key,0);
 					
 				}else {
 					throw new LoginException("Wrong Password");
