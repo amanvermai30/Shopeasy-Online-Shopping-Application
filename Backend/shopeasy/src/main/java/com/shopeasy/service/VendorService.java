@@ -22,7 +22,7 @@ public interface VendorService {
 	
 	public String updateProduct(Product product, String key) throws ProductException,LoginException,VendorException;
 	
-	public List<Product> viewAllProduct() throws ProductException,LoginException,VendorException;
+	public List<Product> viewAllProductByVendorId(Integer vendorId) throws ProductException,LoginException,VendorException;
 	
 	public String removeProduct(Integer productId,String key) throws ProductException,LoginException,VendorException;
 	

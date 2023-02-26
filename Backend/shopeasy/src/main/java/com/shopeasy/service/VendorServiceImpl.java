@@ -134,10 +134,13 @@ public class VendorServiceImpl implements VendorService {
 	}
 
 	@Override
-	public List<Product> viewAllProduct() throws ProductException, LoginException, VendorException {
+	public List<Product> viewAllProductByVendorId(Integer vendorId) throws ProductException, LoginException, VendorException {
 		// TODO Auto-generated method stub
 
-		List<Product> products = productDao.findAll();
+		Optional<Vendor> vendorOpt = vendorDao.findById(vendorId);
+		Vendor vendor = vendorOpt.get();
+		
+		List<Product> products = vendor.getProducts();
 
 		if (products.isEmpty()) {
 			throw new ProductException("Product is currently not available ");
