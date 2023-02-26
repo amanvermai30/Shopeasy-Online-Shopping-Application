@@ -16,4 +16,7 @@ public interface CustomerService {
 	
 	public Customer updateCustomer(Customer customer,String key)throws CustomerException;
 	
+	public Cart deleteProductFromCart(Integer productId,Integer customerId,String key) throws CartException,ProductException,CustomerException;
+	
+	public Cart getCartDetails(Integer customerId) throws CartException,ProductException,CustomerException;
 }

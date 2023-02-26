@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.security.auth.login.LoginException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +44,7 @@ public class VendorController {
 	
 	
 	@PostMapping("/vendor")
-	public ResponseEntity<String> createVendorAccount(@RequestBody Vendor vendor) throws VendorException,PersonalInfoException, IOException{
+	public ResponseEntity<String> createVendorAccount(@Valid @RequestBody Vendor vendor) throws VendorException,PersonalInfoException, IOException{
 		
 //		processing and uploading file
 //		this.fileService.uploadImage(path, image);
@@ -73,10 +74,10 @@ public class VendorController {
 		return new ResponseEntity<String>(outPut,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/viewallproducts")
-	public ResponseEntity<List<Product>> viewAllProduct()throws ProductException, LoginException, VendorException{
+	@GetMapping("/viewallproducts/{vendorId}")
+	public ResponseEntity<List<Product>> viewAllProduct(@PathVariable("vendorId") Integer vendorId)throws ProductException, LoginException, VendorException{
 		
-		List<Product> outPut= vendorService.viewAllProduct();
+		List<Product> outPut= vendorService.viewAllProductByVendorId(vendorId);
 		return new ResponseEntity<List<Product>>(outPut,HttpStatus.CREATED);
 	}
 	

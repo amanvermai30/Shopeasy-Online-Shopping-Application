@@ -1,11 +1,15 @@
 package com.shopeasy.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopeasy.dto.ProductDTO;
 import com.shopeasy.enums.PaymentMethod;
 import com.shopeasy.enums.PaymentStatus;
 import com.shopeasy.exception.CustomerException;
@@ -18,6 +22,7 @@ import com.shopeasy.model.Product;
 import com.shopeasy.repository.CartDao;
 import com.shopeasy.repository.OrderClassDao;
 import com.shopeasy.repository.PaymentDao;
+import com.shopeasy.repository.ProductDao;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
@@ -31,6 +36,10 @@ public class PaymentServiceImpl implements PaymentService{
 	@Autowired
 	private CartDao cartDao; 
 	
+	@Autowired
+	private ProductDao productDao;
+	
+	@Transactional
 	@Override
 	public Payment giveYourPayment(Payment payment, Integer orderId)
 			throws PaymentException, CustomerException, OrderClassException {
@@ -39,13 +48,6 @@ public class PaymentServiceImpl implements PaymentService{
 		Payment outPut = null;
 		Optional<OrderClass> orderOpt = orderDao.findById(orderId);
 		OrderClass order = orderOpt.get();
-		
-		Optional<Payment> paymentOpt = paymentDao.findById(payment.getPaymentId());
-		Payment alreadyPayment = paymentOpt.get();
-		
-		if(alreadyPayment.getOrders().getOrderId() == orderId) {
-			throw new PaymentException("Your payment is already done ");
-		}
 		
 		if(order == null ) {
 			throw new OrderClassException("Order not found ");
@@ -56,6 +58,15 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		
 //		I need to update my product table also 
+		List<ProductDTO> products = cart.getProducts();
+
+		// Iterate over the list of products and update each product in the Product table
+		for (ProductDTO product : products) {
+		    int productId = product.getProductId();
+		    int quantity = product.getQuantity();
+		    productDao.updateProductQuantityById(productId, quantity);
+		}
+
 		
 		payment.setPaymentCreatedAtDate(LocalDate.now());
 		payment.setPaymentAmount(order.getTotalAmount());
