@@ -3,6 +3,11 @@
 const sessionKey = localStorage.getItem("sessionkey");
 const productId = localStorage.getItem("productId");
 const userId = localStorage.getItem("userId");
+const cartValue = localStorage.getItem("numberOfProductInCart");
+
+// setting cart value
+let itemNumberInCart = document.querySelector(".itemNumber");
+itemNumberInCart.innerText = cartValue;
 
 let getSingalProductData = async () => {
     try {
@@ -85,7 +90,6 @@ function checkQuantity(data) {
     let minus = document.getElementById("minus");
     let plus = document.getElementById("plus");
     let value = document.getElementById("value");
-    let itemNumberInCart = document.querySelector(".itemNumber");
     const productQuantity = data.quantity;
 
     // function for change the value of product
@@ -95,7 +99,6 @@ function checkQuantity(data) {
         } else {
             goodsValue--;
             value.innerText = goodsValue;
-            itemNumberInCart.innerText = goodsValue;
         }
     };
     plus.onclick = function () {
@@ -105,7 +108,6 @@ function checkQuantity(data) {
         } else {
             goodsValue++;
             value.innerText = goodsValue;
-            itemNumberInCart.innerText = goodsValue;
         }
 
     };

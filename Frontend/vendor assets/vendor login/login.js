@@ -17,9 +17,10 @@ async function userSignup(e) {
   };
 
   try {
-    const sessionKey = await userSignUpFun(loginData);
-    localStorage.setItem('sessionKey', sessionKey);
-    console.log(sessionKey);
+    const StoringData = await userSignUpFun(loginData);
+    localStorage.setItem('sessionKey', StoringData.sessionkey);
+    localStorage.setItem('userId', StoringData.userId); 
+    console.log(StoringData);
     alert("Vendor login successfully");
     window.location.href = "../dashboard/dashboard.html";
   } catch (error) {
@@ -43,7 +44,7 @@ let userSignUpFun = async (obj) => {
     if (res.ok) {
       console.log("success");
       const data = await res.json();
-      return data.sessionKey;
+      return data
 
     } else {
 

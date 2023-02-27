@@ -3,13 +3,13 @@
 const searchBtn = document.querySelector(".search");
 const resetBtn = document.querySelector(".reset");
 const searchInput = document.querySelector("#search-input");
-
+const vendorId = localStorage.getItem("userId");
 
 let allProducts = [];
 
 async function findAllProduct() {
   try {
-    let res = await fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/viewallproducts`, {
+    let res = await fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/viewallproducts/${vendorId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
