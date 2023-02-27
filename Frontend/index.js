@@ -4,32 +4,32 @@ const sessionKey = localStorage.getItem("sessionkey");
 console.log(sessionKey);
 
 let getProductData = async () => {
-    try {
-        const res = await fetch(
-            `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/productController/viewallproducts`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+  try {
+    const res = await fetch(
+      `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/productController/viewallproducts`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-        if (res.ok) {
-            console.log("success");
-            const data = await res.json();
-            return data;
-        } else {
-            const data = await res.json();
-            const error = JSON.stringify(data);
-            const msg = JSON.parse(error);
-            console.log(msg);
-            throw new Error(msg.message);
-        }
-    } catch (error) {
-        console.log(error);
-        throw new Error(error);
+    if (res.ok) {
+      console.log("success");
+      const data = await res.json();
+      return data;
+    } else {
+      const data = await res.json();
+      const error = JSON.stringify(data);
+      const msg = JSON.parse(error);
+      console.log(msg);
+      throw new Error(msg.message);
     }
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
 };
 
 //   after calling I am appending data in html
@@ -38,9 +38,9 @@ let appendData = (data) => {
   // taking main container for append each product which is inside a tag
   const mainContainer = document.querySelector(".product--items__container");
 
-    data.forEach((el,index)=>{
+  data.forEach((el, index) => {
 
-      // // creating a tag, img tag, p tag and span tag
+    // // creating a tag, img tag, p tag and span tag
     const atag = document.createElement("a");
     const img = document.createElement("img");
     const p1 = document.createElement("p");
@@ -58,64 +58,98 @@ let appendData = (data) => {
     // add data to all tags 
     img.src = el.picture;
     p1.innerText = el.productName;
-    p2.innerText = "Price: "+"₹"+el.afterDiscountPrice;
+    p2.innerText = "Price: " + "₹" + el.afterDiscountPrice;
     span1.textContent = el.marketPrice;
-    span2.textContent = el.discount+"%";
+    span2.textContent = el.discount + "%";
 
     // by clicking any product it will redirect to singal product page 
     atag.addEventListener("click", () => {
-      const productId = el.productId;
-      localStorage.setItem('productId', productId);
-      window.location.href = "./customer assets/singal product/singalProduct.html";
+
+      if (checkLogin() == false) {
+
+        const productId = el.productId;
+        localStorage.setItem('productId', productId);
+        window.location.href = "./customer assets/singal product/singalProduct.html";
+      }
+
     });
     // now I will append all tags 
     atag.append(img, p1, p2, span1, span2);
     mainContainer.append(atag);
 
-    })
+  })
 };
 
 // calling  api for vendor data after login
 window.addEventListener("load", async () => {
 
-    if(sessionKey == null ){
-        alert("You have not logged in please login first");
-        window.location.href = "./customer assets/customer login/login.html"
-    
-    }else {
-        const logoutbtn = document.querySelector(".logout");
-        logoutbtn.innerText = "logout"
-        const customerData = await getProductData();
-        appendData(customerData);
-    }
-    
+  const customerData = await getProductData();
+  appendData(customerData);
+
 });
 
 // serch product by category
 const aTags = document.querySelectorAll('.productCatogary a');
 
-  for (let i = 0; i < aTags.length; i++) {
-    
-      aTags[i].addEventListener('click', function(event) {
-      event.preventDefault(); 
-      const clickedTag = event.target.textContent;
-      localStorage.setItem('category', clickedTag);
+for (let i = 0; i < aTags.length; i++) {
 
-      if(clickedTag == "Mens"){
+  aTags[i].addEventListener('click', function (event) {
+    event.preventDefault();
+    const clickedTag = event.target.textContent;
+    localStorage.setItem('category', clickedTag);
+
+    if (clickedTag == "Mens") {
+
+      if (checkLogin() == false) {
         window.location.href = "./customer assets/category/mans/mans.html";
+      }
 
-      }else if(clickedTag == "Womans"){
+
+    } else if (clickedTag == "Womans") {
+
+      if (checkLogin() == false) {
         window.location.href = "./customer assets/category/womans/womans.html";
+      }
 
-      }else if(clickedTag == "Kids"){
+
+    } else if (clickedTag == "Kids") {
+
+      if (checkLogin() == false) {
         window.location.href = "/customer assets/category/kids/kids.html";
+      }
 
-      }else {
+
+    } else {
+
+      if (checkLogin() == false) {
         window.location.href = "/customer assets/category/grocery/grocery.html";
       }
 
-    });
+    }
+
+  });
+}
+
+
+function checkLogin() {
+
+  if (sessionKey == null) {
+    alert("You have not logged in please login first");
+    window.location.href = "./customer assets/customer login/login.html"
+    return true;
+
+  } else {
+    
+    return false;
   }
+
+}
+
+// checking on main page
+if(sessionKey != null ){
+  const logoutbtn = document.querySelector(".logout");
+  logoutbtn.innerText = "logout"
+}
 
 
 

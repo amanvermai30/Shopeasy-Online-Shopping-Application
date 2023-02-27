@@ -224,6 +224,9 @@
   width: 15em;
   aspect-ratio: 1;
 }
+.product--items__info:hover{
+  cursor: pointer;
+}
 
 .product--items__info p{
   font-weight: 500;
@@ -239,6 +242,7 @@
   border-radius: 10px;
   font-size: 13px;
   padding: 0 5px;
+  margin-left: 5px;
 }
 
 .product--items__info img{

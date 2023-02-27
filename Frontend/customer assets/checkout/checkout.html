@@ -19,21 +19,21 @@
                     <div class="payment__option">
                         <input type="radio" id="credit" name="fav_language" value="HTML">
                         <label for="html">Credit/Debit Card</label><br>
-                        <input type="radio" id="cod" name="fav_language" value="CSS">
-                        <label for="css">Cash on delivery</label><br>
+                        <!-- <input type="radio" id="cod" name="fav_language" value="CSS">
+                        <label for="css">Cash on delivery</label><br> -->
                     </div>
                     <div class="payment__option--data">
                         <div id="creditcard--data" style="margin-left: 2em;">
                             <h3>Add Credit/Debit Card</h3>
                             <form style="margin-top: 1em;">
                                 <label for="credit">Credit/Debit Card No.</label><br>
-                                <input type="text" id="credit" name="credit" value="Card No."><br>
+                                <input type="text" id="credit" name="credit" value=""><br>
 
                                 <label for="expiry">Expiry</label><br>
-                                <input type="text" id="expiry" name="expiry" value="Expiry Date"><br>
+                                <input type="text" id="expiry" name="expiry" value=""><br>
 
                                 <label for="cvv">CVV</label><br>
-                                <input type="text" id="cvv" name="cvv" value="cvv"><br>
+                                <input type="password" id="cvv" name="cvv" value=""><br>
                             </form>
 
                         </div>
@@ -47,7 +47,7 @@
                     <form style="text-align: center;">
                         <label for="totalprice">Your Total</label>
                         <input id="totalprice" type="text" placeholder="total" disabled>
-                        <input type="button" value="Place Order & Pay" class="btn">
+                        <input type="button" onclick="paymentNowFun()" value="Place Order & Pay" class="btn">
                     </form>
                 </div>
             </div>
@@ -75,5 +75,6 @@
             </div>
         </footer>
     </main>
+    <script src="./checkout.js"></script>
 </body>
 </html>
