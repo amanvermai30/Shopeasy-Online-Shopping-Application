@@ -3,6 +3,11 @@
 const sessionKey = localStorage.getItem("sessionkey");
 console.log(sessionKey);
 
+//now getting it from local storage  
+const getNoFromLocal = localStorage.getItem("numberOfProductInCart");
+const cartProductNo = document.querySelector(".itemNumber");
+cartProductNo.innerText = getNoFromLocal;
+
 let getProductData = async () => {
   try {
     const res = await fetch(
