@@ -8,13 +8,14 @@
 }
 
 #logo {
-    width: 15em;
+    width: 13em;
+    margin-right: 30em;
 }
 
 .navBar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-between;
     padding: 1em 2em;
 }
 
@@ -30,13 +31,13 @@
     border: 2px solid rgb(193, 193, 193);
     border-radius: 5px;
     font-size: 18px;
-    padding: .5em;
+    padding: .7em;
 }
 
 .btn {
     font-size: 1em;
     border-radius: 5px;
-    padding: .8em 1.5em;
+    padding: 1em 1.5em;
     cursor: pointer;
     border: none;
     background-color: rgb(21, 21, 21);

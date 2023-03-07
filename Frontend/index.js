@@ -3,10 +3,18 @@
 const sessionKey = localStorage.getItem("sessionkey");
 console.log(sessionKey);
 
-//now getting it from local storage  
-const getNoFromLocal = localStorage.getItem("numberOfProductInCart");
-const cartProductNo = document.querySelector(".itemNumber");
-cartProductNo.innerText = getNoFromLocal;
+// clicking on cart button  
+const cartProductNo = document.querySelector(".addtocart");
+cartProductNo.addEventListener("click", function () {
+
+  if (checkLogin() == false) {
+    //now getting it from local storage  
+    const getNoFromLocal = localStorage.getItem("numberOfProductInCart");
+    const cartProductNo = document.querySelector(".itemNumber");
+    cartProductNo.innerText = getNoFromLocal;
+  }
+
+})
 
 let getProductData = async () => {
   try {
@@ -120,14 +128,14 @@ for (let i = 0; i < aTags.length; i++) {
     } else if (clickedTag == "Kids") {
 
       if (checkLogin() == false) {
-        window.location.href = "/customer assets/category/kids/kids.html";
+        window.location.href = "./customer assets/category/kids/kids.html";
       }
 
 
     } else {
 
       if (checkLogin() == false) {
-        window.location.href = "/customer assets/category/grocery/grocery.html";
+        window.location.href = "./customer assets/category/grocery/grocery.html";
       }
 
     }
@@ -144,14 +152,14 @@ function checkLogin() {
     return true;
 
   } else {
-    
+
     return false;
   }
 
 }
 
 // checking on main page
-if(sessionKey != null ){
+if (sessionKey != null) {
   const logoutbtn = document.querySelector(".logout");
   logoutbtn.innerText = "logout"
 }

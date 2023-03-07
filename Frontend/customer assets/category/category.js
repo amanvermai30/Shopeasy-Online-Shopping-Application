@@ -74,7 +74,7 @@ let appendData = (data) => {
 
             const productId = el.productId;
             localStorage.setItem('productId', productId);
-            window.location.href = "/customer assets/singal product/singalProduct.html";
+            window.location.href = "/Frontend/customer assets/singal product/singalProduct.html";
 
         });
 
