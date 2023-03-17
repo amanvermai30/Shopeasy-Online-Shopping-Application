@@ -156,7 +156,7 @@ async function addToCartFun() {
         const cart = await addToCartData();
         console.log(cart);
         alert("product added to cart successfuly");
-        window.location.href = "/customer assets/cart/cart.html";
+        window.location.href = "../cart/cart.html";
     } catch (error) {
         console.log(error);
     }
