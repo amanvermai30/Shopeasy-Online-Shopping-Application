@@ -22,7 +22,7 @@ async function userSignup(e) {
     localStorage.setItem('userId', StoringData.userId); 
     console.log(StoringData);
     alert("Vendor login successfully");
-    window.location.href = "../dashboard/dashboard.html";
+    window.location.href = "/Frontend/vendor assets/dashboard/dashboard.html";
   } catch (error) {
     console.error(error);
     alert("Error: " + error.message);
@@ -33,7 +33,7 @@ async function userSignup(e) {
 let userSignUpFun = async (obj) => {
 
   try {
-    const res = await fetch("http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//loginController/login", {
+    const res = await fetch("http://localhost:8888/loginController/login", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

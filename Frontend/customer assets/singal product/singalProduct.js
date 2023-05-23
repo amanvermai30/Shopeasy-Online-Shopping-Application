@@ -12,7 +12,7 @@ itemNumberInCart.innerText = cartValue;
 let getSingalProductData = async () => {
     try {
         const res = await fetch(
-            `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/productController/singalproduct/${sessionKey}/${productId}`,
+            `http://localhost:8888/productController/singalproduct/${sessionKey}/${productId}`,
             {
                 method: "GET",
                 headers: {
@@ -123,7 +123,7 @@ checkQuantity();
 async function addToCartData() {
 
     try {
-        let res = await fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//customerController/addtocart/${productId}/${userId}/${goodsValue}`, {
+        let res = await fetch(`http://localhost:8888/customerController/addtocart/${productId}/${userId}/${goodsValue}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

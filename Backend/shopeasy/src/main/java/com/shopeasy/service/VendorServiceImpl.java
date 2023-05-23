@@ -1,6 +1,7 @@
 package com.shopeasy.service;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,7 +80,8 @@ public class VendorServiceImpl implements VendorService {
 			} else if (product.getCategory() == null || !product.getCategory().equals(CategoryType.MENS)
 					&& !product.getCategory().equals(CategoryType.KIDS)
 					&& !product.getCategory().equals(CategoryType.WOMANS)
-					&& !product.getCategory().equals(CategoryType.GROCERY)) {
+					&& !product.getCategory().equals(CategoryType.GROCERY)
+					&& !product.getCategory().equals(CategoryType.ELECTRONICS)) {
 
 				throw new ProductException(
 						"Sorry Vendor currently we are having only four type of category mens, womans, kids, electronics");
@@ -91,7 +93,18 @@ public class VendorServiceImpl implements VendorService {
 
 			double discountAmount = product.getMarketPrice() * (product.getDiscount() / 100.0);
 			double finalPrice = product.getMarketPrice() - discountAmount;
-			product.setAfterDiscountPrice(finalPrice);
+			
+			// Create a DecimalFormat instance with the desired format pattern
+			DecimalFormat decimalFormat = new DecimalFormat("#.00");
+
+			// Format the finalPrice using the DecimalFormat instance
+			String formattedPrice = decimalFormat.format(finalPrice);
+
+			// Convert the formatted price back to a double
+			double afterDiscountPrice = Double.parseDouble(formattedPrice);
+
+			product.setAfterDiscountPrice(afterDiscountPrice);
+			
 			product.getVendors().add(vendor);
 			vendor.getProducts().add(product);
 			productDao.save(product);

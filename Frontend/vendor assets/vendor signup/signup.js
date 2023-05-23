@@ -44,7 +44,7 @@ function userSignup(e) {
 let userSignUpFun = async (obj) => {
 
   try {
-    let res = await fetch("http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/vendor", {
+    let res = await fetch("http://localhost:8888/vendorController/vendor", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

@@ -8,7 +8,7 @@ totalPriceInput.value = totalAmount;
 function paymentNowFun() {
 
 
-    fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/paymentController/giveyourpayment/${orderId}`, {
+    fetch(`http://localhost:8888/paymentController/giveyourpayment/${orderId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

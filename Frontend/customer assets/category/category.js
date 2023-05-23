@@ -13,7 +13,7 @@ cartProductNo.innerText = getNoFromLocal;
 let getProductDataByCategory = async () => {
     try {
         const res = await fetch(
-            `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/productController/getproductbycategory/${category}/${sessionKey}`,
+            `http://localhost:8888/productController/getproductbycategory/${category}/${sessionKey}`,
             {
                 method: "GET",
                 headers: {

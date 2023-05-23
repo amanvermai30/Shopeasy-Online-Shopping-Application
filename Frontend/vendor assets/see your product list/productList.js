@@ -9,7 +9,7 @@ let allProducts = [];
 
 async function findAllProduct() {
   try {
-    let res = await fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/viewallproducts/${vendorId}`, {
+    let res = await fetch(`http://localhost:8888/vendorController/viewallproducts/${vendorId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -19,7 +19,7 @@ async function userLogin(e) {
     localStorage.setItem("userId",data.userId);
     console.log(data.sessionkey);
     alert("Start your shopping now");
-    window.location.href = "/index.html";
+    window.location.href = "/Frontend/index.html";
 
   } catch (error) {
     console.error(error);
@@ -31,7 +31,7 @@ async function userLogin(e) {
 let userSignUpFun = async (obj) => {
 
   try {
-    const res = await fetch("http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//loginController/login", {
+    const res = await fetch("http://localhost:8888/loginController/login", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

@@ -49,7 +49,7 @@ function createProduct(e) {
 let sendProductData = async (obj) => {
   try {
     const res = await fetch(
-      `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/addproduct/${sessionKey}`,
+      `http://localhost:8888/vendorController/addproduct/${sessionKey}`,
       {
         method: "POST",
         body: JSON.stringify(obj),

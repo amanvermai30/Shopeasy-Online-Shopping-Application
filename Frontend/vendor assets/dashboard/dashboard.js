@@ -6,7 +6,7 @@ console.log(sessionKey);
 let vendorLoggedin = async () => {
     try {
         const res = await fetch(
-            `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com//vendorController/singalvendor/${sessionKey}`,
+            `http://localhost:8888//vendorController/singalvendor/${sessionKey}`,
             {
                 method: "GET",
                 headers: {

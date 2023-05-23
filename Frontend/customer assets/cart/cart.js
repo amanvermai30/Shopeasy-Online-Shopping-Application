@@ -31,7 +31,7 @@ const sessionKey = localStorage.getItem("sessionkey");
 let getCartData = async () => {
   try {
     const res = await fetch(
-      `http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/customerController/getcartdetails/${customerId}`,
+      `http://localhost:8888/customerController/getcartdetails/${customerId}`,
       {
         method: "GET",
         headers: {
@@ -109,7 +109,7 @@ function appendData(data) {
       const productId = el.productId;
 
       // Make an API request to delete the product from the cart
-      fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/customerController/deleteproductfromcart/${productId}/${customerId}/${sessionKey}`, {
+      fetch(`http://localhost:8888/customerController/deleteproductfromcart/${productId}/${customerId}/${sessionKey}`, {
         method: 'DELETE'
       })
         .then(response => response.json())
@@ -150,7 +150,7 @@ window.addEventListener("load", async () => {
 function orderNowFun() {
 
 
-  fetch(`http://shopeasy-env.eba-xkxpqfpn.ap-south-1.elasticbeanstalk.com/orderController/giveyourorder/${customerId}`, {
+  fetch(`http://localhost:8888/orderController/giveyourorder/${customerId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
